@@ -3,17 +3,17 @@ namespace Front\Controller;
 
 use Front\Model\Job;
 use Front\Model\Category;
-use Front\Model\JobTable;
 use Front\Model\CategoryTable;
+use Front\Model\JobTable;
 use Zend\Db\ResultSet\ResultSet;
-use Front\Controller\IndexController;
+use Front\Controller\JobController;
 use Zend\Http\Request;
 use Zend\Http\Response;
 use Zend\Mvc\MvcEvent;
 use Zend\Mvc\Router\RouteMatch;
 use PHPUnit_Framework_TestCase;
 
-class IndexControllerTest extends PHPUnit_Framework_TestCase
+class JobControllerTest extends PHPUnit_Framework_TestCase
 {
     protected $controller;
     protected $request;
@@ -23,8 +23,9 @@ class IndexControllerTest extends PHPUnit_Framework_TestCase
     
     protected function setUp()
     {
-        $bootstrap = \Zend\Mvc\Application::init(include 'config/application.config.php');
+        $bootstrap        = \Zend\Mvc\Application::init(include 'config/application.config.php');
         
+        // La partie intéressante: nous "créons" un modèle Category
         $categoryData = array('id_category' => 1, 'name' => 'Project Manager');
         $category     = new Category();
         $category->exchangeArray($categoryData);
@@ -37,7 +38,7 @@ class IndexControllerTest extends PHPUnit_Framework_TestCase
                          ->with()
                          ->will($this->returnValue($resultSetCategory));
         $categoryTable = new CategoryTable($mockCategoryTableGateway);
-
+        
         $jobData = array(
             'id_job' => 1,
             'id_category' => 1,
@@ -58,7 +59,7 @@ class IndexControllerTest extends PHPUnit_Framework_TestCase
         $job = new Job();
         $job->exchangeArray($jobData);
         $resultSetJob = new ResultSet();
-        $resultSetJob->setArrayObjectPrototype(new Job());
+        $resultSetJob->setArrayObjectPrototype(new Category());
         $resultSetJob->initialize(array($job));
         $mockJobTableGateway = $this->getMock('Zend\Db\TableGateway\TableGateway', array('select'), array(), '', false);
         $mockJobTableGateway->expects($this->any())
@@ -67,9 +68,9 @@ class IndexControllerTest extends PHPUnit_Framework_TestCase
                             ->will($this->returnValue($resultSetJob));
         $jobTable = new JobTable($mockJobTableGateway);
         
-        $this->controller = new IndexController($categoryTable, $jobTable);
+        $this->controller = new JobController($categoryTable, $jobTable);
         $this->request    = new Request();
-        $this->routeMatch = new RouteMatch(array('controller' => 'index'));
+        $this->routeMatch = new RouteMatch(array('controller' => 'job'));
         $this->event      = $bootstrap->getMvcEvent();
         $this->event->setRouteMatch($this->routeMatch);
         $this->controller->setEvent($this->event);
@@ -77,19 +78,9 @@ class IndexControllerTest extends PHPUnit_Framework_TestCase
         $this->controller->setServiceLocator($bootstrap->getServiceManager());
     }
 
-    public function testIndexActionCanBeAccessed()
-    {
-        $this->routeMatch->setParam('action', 'index');
-        $result   = $this->controller->dispatch($this->request);
-        $response = $this->controller->getResponse();
-    
-        $this->assertEquals(200, $response->getStatusCode());
-        $this->assertInstanceOf('Zend\View\Model\ViewModel', $result);
-    }
-
     public function test404WhenActionDoesNotExist()
     {
-        $this->routeMatch->setParam('action', 'action-qui-nexiste-pas');
+        $this->routeMatch->setParam('action', 'autre-action');
         $result   = $this->controller->dispatch($this->request);
         $response = $this->controller->getResponse();
         $this->assertEquals(404, $response->getStatusCode());

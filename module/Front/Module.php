@@ -1,21 +1,22 @@
 <?php
 namespace Front;
 
+use Front\Controller\IndexController;
+
+use Front\Controller\CategoryController;
+use Front\Controller\JobController;
+
 use Front\Model\Job;
-
 use Zend\Db\TableGateway\TableGateway;
-
 use Zend\Db\ResultSet\ResultSet;
-
 use Front\Model\Category;
-
 use Zend\Mvc\MvcEvent;
-
 use Front\Model\CategoryTable;
 use Front\Model\JobTable;
 use Front\Model\UserTable;
 use Zend\ModuleManager\ModuleManager;
 use Zend\Mvc\ModuleRouteListener;
+use Zend\Mvc\Controller\ControllerManager;
 
 class Module
 {
@@ -71,6 +72,34 @@ class Module
                 	$resultSetPrototype = new ResultSet();
                 	$resultSetPrototype->setArrayObjectPrototype(new Job());
                 	return new TableGateway('job', $dbAdapter, null, $resultSetPrototype);
+                },
+            ),
+        );
+    }
+    
+    public function getControllerConfig() {
+        return array(
+            'factories' => array(
+                'Front\Controller\Category'    => function(ControllerManager $cm) {
+                    $sm   = $cm->getServiceLocator();
+                    $category = $sm->get('Front\Model\CategoryTable');
+                    $job = $sm->get('Front\Model\JobTable');
+                    $controller = new CategoryController($category, $job);
+                    return $controller;
+                },
+                'Front\Controller\Job'    => function(ControllerManager $cm) {
+                    $sm   = $cm->getServiceLocator();
+                    $category = $sm->get('Front\Model\CategoryTable');
+                    $job = $sm->get('Front\Model\JobTable');
+                    $controller = new JobController($category, $job);
+                    return $controller;
+                },
+                'Front\Controller\Index'    => function(ControllerManager $cm) {
+                    $sm   = $cm->getServiceLocator();
+                    $category = $sm->get('Front\Model\CategoryTable');
+                    $job = $sm->get('Front\Model\JobTable');
+                    $controller = new IndexController($category, $job);
+                	return $controller;
                 },
             ),
         );

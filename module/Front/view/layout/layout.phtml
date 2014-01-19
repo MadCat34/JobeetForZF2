@@ -13,7 +13,7 @@
             <div id="header">
                 <div class="content">
                     <h1>
-                        <a href="#">
+                        <a href="<?php echo $this->url('home');?>">
                             <img src="/images/logo.jpg" alt="Jobeet Job Board" />
                         </a>
                     </h1>
@@ -37,6 +37,7 @@
             </div>
             <div id="content">
                 <div class="content">
+                    <div id="job_history">Recent viewed jobs:</div>
                     <?php echo $this->content; ?>
                 </div>
             </div>
