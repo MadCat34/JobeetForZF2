@@ -4,23 +4,20 @@ namespace Front\Model;
 use Zend\Db\Sql\Select;
 use Zend\Db\Adapter\Adapter;
 use Zend\Db\ResultSet\ResultSet;
-use Zend\Db\TableGateway\AbstractTableGateway;
+use Zend\Db\TableGateway\TableGateway;
 
-class JobTable extends AbstractTableGateway
+class JobTable
 {
-    protected $table ='job';
+    protected $tableGateway;
 
-    public function __construct(Adapter $adapter)
+    public function __construct(TableGateway $tableGateway)
     {
-        $this->adapter = $adapter;
-        $this->resultSetPrototype = new ResultSet();
-        $this->resultSetPrototype->setArrayObjectPrototype(new Job());
-        $this->initialize();
+        $this->tableGateway = $tableGateway;
     }
 
     public function fetchAll()
     {
-        $resultSet = $this->select();
+        $resultSet = $this->tableGateway->select();
         return $resultSet;
     }
     
@@ -31,14 +28,14 @@ class JobTable extends AbstractTableGateway
                ->where('id_category = ' . (int)$idCategory)
                ->limit((int)$limit);
 
-        $resultSet = $this->select($select);
+        $resultSet = $this->tableGateway->select($select);
         return $resultSet;
     }
     
     public function fetchAllByIdCategory($idCategory)
     {
     	$id  = (int)$idCategory;
-        $resultSet = $this->select(array('id_category' => $id));
+        $resultSet = $this->tableGateway->select(array('id_category' => $id));
         return $resultSet;
     }
     
@@ -46,7 +43,7 @@ class JobTable extends AbstractTableGateway
     public function getJob($id)
     {
         $id  = (int)$id;
-        $rowset = $this->select(array('id_job' => $id));
+        $rowset = $this->tableGateway->select(array('id_job' => $id));
         $row = $rowset->current();
 
         if (!$row) {
@@ -79,9 +76,9 @@ class JobTable extends AbstractTableGateway
         $id = (int)$job->idJob;
 
         if ($id == 0) {
-            $this->insert($data);
+            $this->tableGateway->insert($data);
         } elseif ($this->getJob($id)) {
-            $this->update(
+            $this->tableGateway->update(
                 $data,
                 array(
                     'id_job' => $id,
@@ -94,6 +91,6 @@ class JobTable extends AbstractTableGateway
 
     public function deleteJob($id)
     {
-        $this->delete(array('id' => $id));
+        $this->tableGateway->delete(array('id' => $id));
     }
 }

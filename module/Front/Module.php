@@ -1,6 +1,14 @@
 <?php
 namespace Front;
 
+use Front\Model\Job;
+
+use Zend\Db\TableGateway\TableGateway;
+
+use Zend\Db\ResultSet\ResultSet;
+
+use Front\Model\Category;
+
 use Zend\Mvc\MvcEvent;
 
 use Front\Model\CategoryTable;
@@ -43,14 +51,26 @@ class Module
         return array(
             'factories' => array(
                 'Front\Model\CategoryTable' =>  function($sm) {
-                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
-                    $table     = new CategoryTable($dbAdapter);
+                    $tableGateway = $sm->get('CategoryTableGateway');
+                    $table = new CategoryTable($tableGateway);
                     return $table;
                 },
+                'CategoryTableGateway' => function ($sm) {
+                	$dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                	$resultSetPrototype = new ResultSet();
+                	$resultSetPrototype->setArrayObjectPrototype(new Category());
+                	return new TableGateway('category', $dbAdapter, null, $resultSetPrototype);
+                },
                 'Front\Model\JobTable' =>  function($sm) {
-                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
-                    $table     = new JobTable($dbAdapter);
-                    return $table;
+                	$tableGateway = $sm->get('JobTableGateway');
+                	$table = new JobTable($tableGateway);
+                	return $table;
+                },
+                'JobTableGateway' => function ($sm) {
+                	$dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                	$resultSetPrototype = new ResultSet();
+                	$resultSetPrototype->setArrayObjectPrototype(new Job());
+                	return new TableGateway('job', $dbAdapter, null, $resultSetPrototype);
                 },
             ),
         );

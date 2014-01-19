@@ -3,30 +3,27 @@ namespace Front\Model;
 
 use Zend\Db\Adapter\Adapter;
 use Zend\Db\ResultSet\ResultSet;
-use Zend\Db\TableGateway\AbstractTableGateway;
+use Zend\Db\TableGateway\TableGateway;
 
-class CategoryTable extends AbstractTableGateway
+class CategoryTable
 {
-    protected $table ='category';
+    protected $tableGateway;
 
-    public function __construct(Adapter $adapter)
+    public function __construct(TableGateway $tableGateway)
     {
-        $this->adapter = $adapter;
-        $this->resultSetPrototype = new ResultSet();
-        $this->resultSetPrototype->setArrayObjectPrototype(new Category());
-        $this->initialize();
+        $this->tableGateway = $tableGateway;
     }
 
     public function fetchAll()
     {
-        $resultSet = $this->select();
+        $resultSet = $this->tableGateway->select();
         return $resultSet;
     }
 
     public function getCategory($id)
     {
         $id  = (int)$id;
-        $rowset = $this->select(array('id_category' => $id));
+        $rowset = $this->tableGateway->select(array('id_category' => $id));
         $row = $rowset->current();
 
         if (!$row) {
@@ -46,14 +43,9 @@ class CategoryTable extends AbstractTableGateway
         $id = (int)$category->idCategory;
 
         if ($id == 0) {
-            $this->insert($data);
+            $this->tableGateway->insert($data);
         } elseif ($this->getCategory($id)) {
-            $this->update(
-                $data,
-                array(
-                    'id_category' => $id,
-                )
-            );
+            $this->tableGateway->update($data, array('id_category' => $id));
         } else {
             throw new \Exception('Form id does not exist');
         }
@@ -61,6 +53,6 @@ class CategoryTable extends AbstractTableGateway
 
     public function deleteCategory($id)
     {
-        $this->delete(array('id' => $id));
+        $this->tableGateway->delete(array('id' => $id));
     }
 }
