@@ -4,6 +4,7 @@ return array(
         'Application',
         'ZendDeveloperTools',
         'BjyProfiler',
+        'Front',
     ),
     'module_listener_options' => array(
         'config_glob_paths'    => array(
