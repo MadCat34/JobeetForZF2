@@ -1,7 +1,6 @@
 <?php
 return array(
     'modules' => array(
-        'Application',
         'ZendDeveloperTools',
         'BjyProfiler',
         'Front',

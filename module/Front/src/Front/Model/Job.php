@@ -5,7 +5,6 @@ class Job
 {
     public $idJob;
     public $idCategory;
-    public $idUser;
     public $type;
     public $company;
     public $logo;
@@ -18,6 +17,7 @@ class Job
     public $isActivated;
     public $email;
     public $createdAt;
+    public $updatedAt;
     
     public function exchangeArray($data)
     {
@@ -36,5 +36,6 @@ class Job
         $this->isActivated = (isset($data['is_activated'])) ? $data['is_activated'] : null;
         $this->email = (isset($data['email'])) ? $data['email'] : null;
         $this->createdAt = (isset($data['created_at'])) ? $data['created_at'] : null;
+        $this->updatedAt = (isset($data['updated_at'])) ? $data['updated_at'] : null;
     }
 }

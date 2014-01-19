@@ -26,7 +26,7 @@ class CategoryTable extends AbstractTableGateway
     public function getCategory($id)
     {
         $id  = (int)$id;
-        $rowset = $this->select(array('id' => $id));
+        $rowset = $this->select(array('id_category' => $id));
         $row = $rowset->current();
 
         if (!$row) {

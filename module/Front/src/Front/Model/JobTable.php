@@ -1,11 +1,12 @@
 <?php
 namespace Front\Model;
 
+use Zend\Db\Sql\Select;
 use Zend\Db\Adapter\Adapter;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\AbstractTableGateway;
 
-class CategoryTable extends AbstractTableGateway
+class JobTable extends AbstractTableGateway
 {
     protected $table ='job';
 
@@ -22,11 +23,30 @@ class CategoryTable extends AbstractTableGateway
         $resultSet = $this->select();
         return $resultSet;
     }
+    
+    public function fetchByIdCategoryWithLimit($idCategory, $limit)
+    {
+        $select = new Select();
+        $select->from('job')
+               ->where('id_category = ' . (int)$idCategory)
+               ->limit((int)$limit);
+
+        $resultSet = $this->select($select);
+        return $resultSet;
+    }
+    
+    public function fetchAllByIdCategory($idCategory)
+    {
+    	$id  = (int)$idCategory;
+        $resultSet = $this->select(array('id_category' => $id));
+        return $resultSet;
+    }
+    
 
     public function getJob($id)
     {
         $id  = (int)$id;
-        $rowset = $this->select(array('id' => $id));
+        $rowset = $this->select(array('id_job' => $id));
         $row = $rowset->current();
 
         if (!$row) {

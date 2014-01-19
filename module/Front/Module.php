@@ -1,11 +1,25 @@
 <?php
 namespace Front;
 
+use Zend\Mvc\MvcEvent;
+
 use Front\Model\CategoryTable;
+use Front\Model\JobTable;
+use Front\Model\UserTable;
+use Zend\ModuleManager\ModuleManager;
+use Zend\Mvc\ModuleRouteListener;
 
 class Module
 {
-    public function getAutoloaderConfig()
+	public function onBootstrap(MvcEvent $e)
+	{
+		$e->getApplication()->getServiceManager()->get('translator');
+		$eventManager        = $e->getApplication()->getEventManager();
+		$moduleRouteListener = new ModuleRouteListener();
+		$moduleRouteListener->attach($eventManager);
+	}
+	
+	public function getAutoloaderConfig()
     {
         return array(
             'Zend\Loader\ClassMapAutoloader' => array(
@@ -33,9 +47,9 @@ class Module
                     $table     = new CategoryTable($dbAdapter);
                     return $table;
                 },
-                'Front\Model\UserTable' =>  function($sm) {
+                'Front\Model\JobTable' =>  function($sm) {
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
-                    $table     = new UserTable($dbAdapter);
+                    $table     = new JobTable($dbAdapter);
                     return $table;
                 },
             ),

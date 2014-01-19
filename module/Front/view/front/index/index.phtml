@@ -1,0 +1,22 @@
+<?php
+    $this->headLink()->appendStylesheet('/css/jobs.css');
+?>
+<div id="job_history">Recent viewed jobs:</div>
+<?php foreach ($this->categories as $category => $jobs): ?>
+    <h1><?php echo $category; ?></h1>
+    <table class="jobs">
+    <tbody>
+        <?php foreach($jobs as $job): ?>
+        <tr class="<?php echo $this->cycle(array("even", "odd"))->next();?>">
+            <td><?php echo $this->escapeHtml($job->location); ?></td>
+            <td>
+                <a href="<?php //echo $this->url(array('controller'=>'job', 'action'=>'get', 'id'=>$job->idJob));?>">
+                    <?php echo $this->escapeHtml($job->position); ?>
+                </a>
+            </td>
+            <td><?php echo $this->escapeHtml($job->company); ?></td>
+        </tr>
+        <?php endforeach;?>
+    </tbody>
+</table>
+<?php endforeach;?>
