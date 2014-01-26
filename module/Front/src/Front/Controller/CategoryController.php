@@ -2,7 +2,6 @@
 namespace Front\Controller;
 
 use Zend\Paginator\Paginator;
-use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
 class CategoryController extends JobeetController
@@ -14,19 +13,20 @@ class CategoryController extends JobeetController
 
     public function listAction()
     {
-        $id_category = $this->params()->fromRoute('id', null);
+        // Get params from matched route
+        $slug = $this->params()->fromRoute('slug', null);
         $currentPage = $this->params()->fromRoute('page', null);
-
-        $adapter = $this->jobTable->getAdapter();
-        //$adapter = $this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
         
-        $select = $this->jobTable->getActiveJobsForPagination($id_category, $this->config['job_nb_valid_days']);
-        $paginator = new Paginator(new \Zend\Paginator\Adapter\DbSelect($select, $adapter));
-        $paginator->setCurrentPageNumber($currentPage);
-        $paginator->setDefaultItemCountPerPage($this->config['nb_job_pagination']);
-
-        if (!is_null($id_category)) {
-            $category = $this->categoryTable->getCategory($id_category);
+        $adapter = $this->jobTable->getAdapter();
+        
+        if (!is_null($slug)) {
+            $category = $this->categoryTable->getCategoryBySlug($slug);
+            
+            $select = $this->jobTable->getActiveJobsForPagination($category->idCategory, $this->config['job_nb_valid_days']);
+            $paginator = new Paginator(new \Zend\Paginator\Adapter\DbSelect($select, $adapter));
+            $paginator->setCurrentPageNumber($currentPage);
+            $paginator->setDefaultItemCountPerPage($this->config['nb_job_pagination']);
+            
             $jobs = $paginator->getCurrentItems();
 
             return new ViewModel(
@@ -34,7 +34,8 @@ class CategoryController extends JobeetController
                     'category' => $category,
                     'jobs'     => $jobs,
                     'paginator' => $paginator,
-                    'id' => $id_category,
+                    'id' => $category->idCategory,
+                	'slug' => $slug
                 )
             );
         } else {

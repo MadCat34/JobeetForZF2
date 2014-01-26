@@ -1,4 +1,6 @@
 <?php
+    namespace Front\Model;
+
     class Jobeet
     {
         static public function slugify($text)

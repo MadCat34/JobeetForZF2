@@ -1,19 +1,19 @@
 <?php if ($this->pageCount): ?>
     <div class="pagination">
         <!-- First page link -->
-        <a href="<?php echo $this->url($this->route, array('page' => $this->first, 'id' => $this->id)); ?>">
+        <a href="<?php echo $this->url($this->route, array('page' => $this->first), false, true); ?>">
             <img src="/images/first.png" alt="First page" width="14" height="14" />
         </a>
     
         <!-- Previous page link -->
-        <a href="<?php echo $this->url($this->route, array('page' => $this->previous, 'id' => $this->id)); ?>">
+        <a href="<?php echo $this->url($this->route, array('page' => $this->previous), false, true); ?>">
             <img src="/images/previous.png" alt="Previous page" />
         </a>
 
         <!-- Numbered page links -->
         <?php foreach ($this->pagesInRange as $page): ?>
             <?php if ($page != $this->current): ?>
-                <a href="<?php echo $this->url($this->route, array('page' => $page, 'id' => $this->id)); ?>"><?php echo $page; ?></a>
+                <a href="<?php echo $this->url($this->route, array('page' => $page), false, true); ?>"><?php echo $page; ?></a>
             <?php else: ?>
                 <?php echo $page; ?>
             <?php endif; ?>
@@ -21,7 +21,7 @@
 
         <!-- Next page link -->
         <?php if (isset($this->next)): ?>
-            <a href="<?php echo $this->url($this->route, array('page' => $this->next, 'id' => $this->id)); ?>">
+            <a href="<?php echo $this->url($this->route, array('page' => $this->next), false, true); ?>">
                 <img src="/images/next.png" alt="Next page" />
             </a>
         <?php else: ?>
@@ -29,7 +29,7 @@
         <?php endif; ?>
         
         <!-- Last Page -->
-        <a href="<?php echo $this->url($this->route, array('page' => $this->last, 'id' => $this->id)); ?>">
+        <a href="<?php echo $this->url($this->route, array('page' => $this->last), false, true); ?>">
             <img src="/images/last.png" alt="Last page" />
         </a>
     </div>

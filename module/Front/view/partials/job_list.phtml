@@ -1,0 +1,26 @@
+<?php 
+    use Front\Model\Jobeet;
+?>
+<table class="jobs">
+    <tbody>
+        <?php foreach($this->jobs as $test => $job): ?>
+	        <tr class="<?php echo $this->cycle(array("even", "odd"))->next();?>">
+	            <td class="location"><?php echo $this->escapeHtml($job->location); ?></td>
+	            <td class="position">
+	                <a href="<?php echo $this->url('get_job',
+	                    array(
+	                        'company' => Jobeet::slugify($job->company),
+	                        'position' => Jobeet::slugify($job->position),
+	                        'location' => Jobeet::slugify($job->location),
+	                        'id'     => $job->id_job
+	                    ), false, false);?>">
+	                    <?php echo $this->escapeHtml($job->position); ?>
+	                </a>
+	            </td>
+	            <td class="company">
+	                <?php echo $this->escapeHtml($job->company); ?>
+	            </td>
+	        </tr>
+        <?php endforeach;?>
+    </tbody>
+</table>

@@ -6,6 +6,7 @@ use Zend\Debug\Debug;
 use Zend\Db\Sql\Select;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
+use Zend\Db\Sql\Where;
 
 class JobTable
 {
@@ -31,15 +32,27 @@ class JobTable
     public function fetchByIdCategoryWithLimit($idCategory, $limit = 10, $nbDays = 30)
     {
         $select = new Select($this->tableGateway->getTable());
+        
         $select->where("id_category = {$idCategory}")
                ->where("created_at >= '" . date('Y-m-d H:i:s', time() - 86400 * $nbDays) . "'")
                ->limit($limit);
 
         $resultset = $this->tableGateway->selectWith($select);
-
-        return $resultset;
+        return $resultset->toArray();
     }
 
+    public function countActiveJobs($idCategory, $nbDays)
+    {
+        $result = $this->tableGateway->select(
+            array(
+                'id_category = ?' => (int)$idCategory,
+                'created_at >= ?' => date('Y-m-d H:i:s', time() - 86400 * $nbDays)
+            )
+        )->count();
+        
+        return $result;
+    }
+    
     public function fetchAllByIdCategory($idCategory, $limit = 10, $nbDays = 30)
     {
         $resultSet = $this->tableGateway->select(

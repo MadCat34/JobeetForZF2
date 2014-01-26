@@ -38,4 +38,9 @@ class Job
         $this->createdAt = (isset($data['created_at'])) ? $data['created_at'] : null;
         $this->updatedAt = (isset($data['updated_at'])) ? $data['updated_at'] : null;
     }
+    
+    public function getArrayCopy()
+    {
+    	return get_object_vars($this);
+    }
 }

@@ -7,6 +7,39 @@ return array(
     ),
     'router' => array(
         'routes' => array(
+            'list_category_page' => array(
+                'type'    => 'Segment',
+                'options' => array(
+                    'route'    => '/category/:slug[/page/[:page]]',
+                    'constraints' => array(
+                        'page'   => '[0-9]+',
+                        'slug'   => '[a-z]+'
+                    ),
+                    'defaults' => array(
+                        'module'     => 'Front',
+                        'controller' => 'Front\Controller\Category',
+                        'action'     => 'list',
+                        'page'       => 1
+                    ),
+                ),
+            ),
+            'get_job' => array(
+                'type'    => 'Segment',
+                'options' => array(
+                    'route'    => '/job/:company/:location/:id/:position',
+                    'constraints' => array(
+                        'company' => '[a-z0-9-]*',
+                        'position' => '[a-z0-9-]*',
+                        'location' => '[a-z0-9-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'module'     => 'Front',
+                        'controller' => 'Front\Controller\Job',
+                        'action'     => 'get',
+                    ),
+                ),
+            ),
             'home' => array(
                 'type' => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(
@@ -14,52 +47,6 @@ return array(
                     'defaults' => array(
                         '__NAMESPACE__' => 'Front\Controller',
                         'controller' => 'Index',
-                        'action'     => 'index',
-                    ),
-                ),
-            ),
-            'category' => array(
-                'type'    => 'Segment',
-                'options' => array(
-                    'route'    => '/category[/:action[/:id]]',
-                    'constraints' => array(
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        'id'     => '[0-9]+',
-                        'page'   => '[0-9]+',
-                    ),
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'Front\Controller',
-                        'controller' => 'Category',
-                        'action'     => 'index',
-                    ),
-                ),
-            ),
-            'list_category_page' => array(
-                'type'    => 'Segment',
-                'options' => array(
-                    'route'    => '/category/list/[:id][/page/[:page]]',
-                    'constraints' => array(
-                        'id'     => '[0-9]+',
-                        'page'   => '[0-9]+'
-                    ),
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'Front\Controller',
-                        'controller' => 'Category',
-                        'action'     => 'list',
-                        'page'       => 1,
-                    ),
-                ),
-            ),
-            'job' => array(
-                'type'    => 'Segment',
-                'options' => array(
-                    'route'    => '/job[/:action][/:id]',
-                    'constraints' => array(
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        'id'     => '[0-9]+',
-                    ),
-                    'defaults' => array(
-                        'controller' => 'Front\Controller\Job',
                         'action'     => 'index',
                     ),
                 ),

@@ -17,7 +17,7 @@ class JobController extends JobeetController
 
         if (!is_null($id_job)) {
             $job = $this->jobTable->getJob($id_job);
-            $category = $this->categoryTable->getCategory($job->idCategory);
+            $category = $this->categoryTable->getCategoryById($job->idCategory);
 
             return new ViewModel(
                 array(

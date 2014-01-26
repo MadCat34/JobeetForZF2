@@ -4,7 +4,6 @@ namespace Front;
 use Zend\Mvc\Controller\ControllerManager;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
-use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 use Front\Model\CategoryTable;
 use Front\Model\JobTable;
@@ -13,6 +12,8 @@ use Front\Model\Job;
 use Front\Controller\IndexController;
 use Front\Controller\CategoryController;
 use Front\Controller\JobController;
+use Zend\Stdlib\Hydrator\ArraySerializable as ArraySerializableHydrator;
+use Zend\Db\ResultSet\HydratingResultSet;
 
 class Module
 {
@@ -54,8 +55,11 @@ class Module
                 },
                 'CategoryTableGateway' => function ($sm) {
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
-                    $resultSetPrototype = new ResultSet();
-                    $resultSetPrototype->setArrayObjectPrototype(new Category());
+                    $resultSetPrototype = new HydratingResultSet(
+                        new ArraySerializableHydrator(),
+                        new Category()
+                    );
+                    
                     return new TableGateway('category', $dbAdapter, null, $resultSetPrototype);
                 },
                 'Front\Model\JobTable' =>  function($sm) {
@@ -65,8 +69,10 @@ class Module
                 },
                 'JobTableGateway' => function ($sm) {
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
-                    $resultSetPrototype = new ResultSet();
-                    $resultSetPrototype->setArrayObjectPrototype(new Job());
+                    $resultSetPrototype = new HydratingResultSet(
+                        new ArraySerializableHydrator(),
+                        new Job()
+                    );
                     return new TableGateway('job', $dbAdapter, null, $resultSetPrototype);
                 },
             ),
