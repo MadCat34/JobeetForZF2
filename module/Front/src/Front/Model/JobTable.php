@@ -1,8 +1,9 @@
 <?php
 namespace Front\Model;
 
+use Zend\Debug\Debug;
+
 use Zend\Db\Sql\Select;
-use Zend\Db\Adapter\Adapter;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 
@@ -15,30 +16,54 @@ class JobTable
         $this->tableGateway = $tableGateway;
     }
 
+    public function getAdapter()
+    {
+        return $this->tableGateway->getAdapter();
+    }
+    
     public function fetchAll()
     {
         $resultSet = $this->tableGateway->select();
+        
         return $resultSet;
     }
-    
-    public function fetchByIdCategoryWithLimit($idCategory, $limit)
-    {
-        $select = new Select();
-        $select->from('job')
-               ->where('id_category = ' . (int)$idCategory)
-               ->limit((int)$limit);
 
-        $resultSet = $this->tableGateway->select($select);
-        return $resultSet;
-    }
-    
-    public function fetchAllByIdCategory($idCategory)
+    public function fetchByIdCategoryWithLimit($idCategory, $limit = 10, $nbDays = 30)
     {
-    	$id  = (int)$idCategory;
-        $resultSet = $this->tableGateway->select(array('id_category' => $id));
+        $select = new Select($this->tableGateway->getTable());
+        $select->where("id_category = {$idCategory}")
+               ->where("created_at >= '" . date('Y-m-d H:i:s', time() - 86400 * $nbDays) . "'")
+               ->limit($limit);
+
+        $resultset = $this->tableGateway->selectWith($select);
+
+        return $resultset;
+    }
+
+    public function fetchAllByIdCategory($idCategory, $limit = 10, $nbDays = 30)
+    {
+        $resultSet = $this->tableGateway->select(
+            array(
+                'id_category = ?' => (int)$idCategory,
+                'created_at >= ?' => date('Y-m-d H:i:s', time() - 86400 * $nbDays)
+            )
+        );
         return $resultSet;
     }
+
+    public function getActiveJobsForPagination($idCategory, $nbDays)
+    {
+        $select = new \Zend\Db\Sql\Select();
+        $select->from($this->tableGateway->getTable())
+               ->where(
+                   array(
+                       'id_category = ?' => (int)$idCategory,
+                       'created_at >= ?' => date('Y-m-d H:i:s', time() - 86400 * $nbDays)
+                   )
+               );
     
+        return $select;
+    }
 
     public function getJob($id)
     {

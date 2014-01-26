@@ -1,5 +1,10 @@
 <?php
 return array(
+    'jobeet' => array(
+        'nb_job_by_category' => 10,
+        'nb_job_pagination' => 4,
+        'job_nb_valid_days' => 30,
+    ),
     'router' => array(
         'routes' => array(
             'home' => array(
@@ -20,11 +25,28 @@ return array(
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id'     => '[0-9]+',
+                        'page'   => '[0-9]+',
                     ),
                     'defaults' => array(
                         '__NAMESPACE__' => 'Front\Controller',
                         'controller' => 'Category',
                         'action'     => 'index',
+                    ),
+                ),
+            ),
+            'list_category_page' => array(
+                'type'    => 'Segment',
+                'options' => array(
+                    'route'    => '/category/list/[:id][/page/[:page]]',
+                    'constraints' => array(
+                        'id'     => '[0-9]+',
+                        'page'   => '[0-9]+'
+                    ),
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Front\Controller',
+                        'controller' => 'Category',
+                        'action'     => 'list',
+                        'page'       => 1,
                     ),
                 ),
             ),

@@ -18,7 +18,7 @@ class Job
     public $email;
     public $createdAt;
     public $updatedAt;
-    
+
     public function exchangeArray($data)
     {
         $this->idJob = (isset($data['id_job'])) ? $data['id_job'] : null;

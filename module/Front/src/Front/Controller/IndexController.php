@@ -6,39 +6,22 @@ use Zend\View\Model\ViewModel;
 use Front\Model\JobTable;
 use Front\Model\CategoryTable;
 
-class IndexController extends AbstractActionController
+class IndexController extends JobeetController
 {
-    protected $jobTable;
-    protected $categoryTable;
-
-    public function __construct($category, $job)
-    {
-    	$this->categoryTable = $category;
-    	$this->jobTable = $job;
-    }
-    
-    /*
-    public function setCategoryTable(CategoryTable $categoryTable)
-    {
-    	$this->categoryTable = $categoryTable;
-    }
-    
-    public function setJobTable(JobTable $jobTable)
-    {
-    	$this->jobTable = $jobTable;
-    }
-    */
-    
     public function indexAction()
     {
         $categories = $this->categoryTable->fetchAll();
         $results = array();
-        
+
         foreach ($categories as $category) {
-            $jobs = $this->jobTable->fetchAllByIdCategory($category->idCategory);
+            $jobs = $this->jobTable->fetchByIdCategoryWithLimit(
+                $category->idCategory,
+                $this->config['nb_job_by_category'],
+                $this->config['job_nb_valid_days']
+            );
             $results[] = array( 'category' => $category, 'job' => $jobs);
         }
-        
+
         return new ViewModel(
             array(
                 'results' => $results,

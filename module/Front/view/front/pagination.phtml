@@ -1,0 +1,40 @@
+<?php if ($this->pageCount): ?>
+    <div class="pagination">
+        <!-- First page link -->
+        <a href="<?php echo $this->url($this->route, array('page' => $this->first, 'id' => $this->id)); ?>">
+            <img src="/images/first.png" alt="First page" />
+        </a>
+    
+        <!-- Previous page link -->
+        <a href="<?php echo $this->url($this->route, array('page' => $this->previous, 'id' => $this->id)); ?>">
+            <img src="/images/previous.png" alt="Previous page" />
+        </a>
+
+        <!-- Numbered page links -->
+        <?php foreach ($this->pagesInRange as $page): ?>
+            <?php if ($page != $this->current): ?>
+                <a href="<?php echo $this->url($this->route, array('page' => $page, 'id' => $this->id)); ?>"><?php echo $page; ?></a>
+            <?php else: ?>
+                <?php echo $page; ?>
+            <?php endif; ?>
+        <?php endforeach; ?>
+
+        <!-- Next page link -->
+        <?php if (isset($this->next)): ?>
+            <a href="<?php echo $this->url($this->route, array('page' => $this->next, 'id' => $this->id)); ?>">
+                <img src="/images/next.png" alt="Next page" />
+            </a>
+        <?php else: ?>
+            <a href="#" class="disabled"><img src="/images/next.png" alt="Next page" /></a>
+        <?php endif; ?>
+        
+        <!-- Last Page -->
+        <a href="<?php echo $this->url($this->route, array('page' => $this->last, 'id' => $this->id)); ?>">
+            <img src="/images/last.png" alt="Last page" />
+        </a>
+    </div>
+<?php endif; ?>
+
+<div class="pagination_desc">
+  <strong><?php echo $this->totalItemCount; ?></strong> annonces dans cette catégorie - page <strong><?php echo $this->current;?> / <?php echo $this->last;?></strong>
+</div>
