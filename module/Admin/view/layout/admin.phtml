@@ -1,0 +1,59 @@
+<?php 
+echo $this->doctype();
+?>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <?php echo $this->headTitle('ZfcAdmin - Zend Framework 2 Admin Interface')->setSeparator(' - ')->setAutoEscape(false) ?>
+        <?php echo $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0') ?>
+        <!-- Le styles -->
+        <?php echo $this->headLink()->prependStylesheet('/css/admin.css');?>
+        <?php echo $this->headLink()->prependStylesheet('/css/bootstrap.min.css') ?>
+        <?php echo $this->headLink()->prependStylesheet('/css/fam-icons.css');?>
+    
+        <!-- Scripts -->
+        <?php echo $this->headScript()->prependFile('/js/bootstrap.min.js')
+                                      ->prependFile('//code.jquery.com/jquery.min.js')
+                                      ->prependFile('//html5shiv.googlecode.com/svn/trunk/html5.js', 'text/javascript', array('conditional' => 'lt IE 9',)) ?>
+    </head>
+    <body>
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="brand" href="<?php echo $this->url('zfcadmin') ?>">Jobeet :: Administration</a>
+                    <div class="nav-collapse">
+                       <?php echo $this->navigation('admin_navigation')->menu()
+                                                                       ->setUlClass('nav')
+                                                                       ->setMinDepth(1)
+                                                                       ->setMaxDepth(1)
+                                                                       ->setRenderInvisible(false)->render();?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <?php
+                echo $this->navigation('admin_navigation')->breadcrumbs()
+                                                          ->setMinDepth(0)
+                                                          ->setPartial(array('breadcrumb', 'Admin'));
+            ?>
+            <?php if (count($this->flashMessages) > 0):?>
+                <?php foreach ($this->flashMessages as $messages):?>
+                    <?php foreach ($messages as $key => $message):?>
+                        <div class="alert alert-<?php echo $key;?>">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <?php echo $message;?>
+                        </div>
+                    <?php endforeach;?>
+                <?php endforeach;?>
+            <?php endif; ?>
+            <?php echo $this->content; ?>
+            <hr>
+            <footer>
+                <p>&copy; 2013 par Romain Bastide - tutoriel Jobeet pour ZF2</p>
+            </footer>
+        </div> <!-- /container -->
+        <?php echo $this->inlineScript() ?>
+    </body>
+</html>

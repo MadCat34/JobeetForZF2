@@ -1,0 +1,53 @@
+<?php
+    $title = 'Edit category';
+    $this->headTitle($title);
+?>
+
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<?php
+    $form = $this->form;
+    $form->setAttribute('action', $this->url('zfcadmin/category/action', array('action' => 'edit', 'id' => $form->get('id_category')->getValue())));
+    $form->setAttribute('class', 'form-horizontal');
+    $form->prepare();
+
+    echo $this->form()->openTag($form);
+    echo $this->formHidden($form->get('id_category'));
+    echo $this->formHidden($form->get('csrf'));
+?>
+    <div class="control-group">
+        <?php echo $this->formLabel($form->get('name')->setLabelAttributes(array('class' => 'control-label')));?>
+        <div class="controls">
+            <?php echo $this->formInput($form->get('name'));?>
+            <?php
+                echo $this->formElementErrors()
+                          ->setMessageOpenFormat('<span class="help-inline error_list">')
+                          ->setMessageSeparatorString('</span><span class="help-inline error_list">')
+                          ->setMessageCloseString('</span>')
+                          ->render($form->get('name'));
+            ?>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <?php echo $this->formLabel($form->get('slug')->setLabelAttributes(array('class' => 'control-label')));?>
+        <div class="controls">
+            <?php echo $this->formInput($form->get('slug'));?>
+            <?php
+                echo $this->formElementErrors()
+                          ->setMessageOpenFormat('<span class="help-inline error_list">')
+                          ->setMessageSeparatorString('</span><span class="help-inline error_list">')
+                          ->setMessageCloseString('</span>')
+                          ->render($form->get('slug'));
+            ?>
+        </div>
+    </div>
+    
+    <div class="control-group">
+        <div class="controls">
+            <?php echo $this->formSubmit($form->get('submit'), array('class' => 'btn'));?>
+        </div>
+    </div>
+<?php
+    echo $this->form()->closeTag();
+?>

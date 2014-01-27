@@ -1,0 +1,114 @@
+<?php
+    $title = 'Edit job';
+    $this->headTitle($title);
+?>
+
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<?php
+    $form = $this->form;
+    $form->setAttribute('action', $this->url('zfcadmin/job/action', array('action' => 'edit', 'id' => $form->get('id_job')->getValue())));
+    $form->setAttribute('class', 'form-horizontal');
+    $form->prepare();
+
+    echo $this->form()->openTag($form);
+    echo $this->formHidden($form->get('id_job'));
+    echo $this->formHidden($form->get('csrf'));
+?>
+
+	<div class="control-group">
+        <?php echo $this->formLabel($form->get('id_category')->setLabelAttributes(array('class' => 'control-label')));?>
+        <div class="controls">
+            <?php echo $this->formSelect($form->get('id_category'));?>
+            <?php echo $this->formElementErrors($form->get('id_category'), array('class' => 'error_list'));?>
+        </div>
+    </div>
+    
+    <div class="control-group">
+        <?php echo $this->formLabel($form->get('type')->setLabelAttributes(array('class' => 'control-label')));?>
+        <div class="controls">
+            <?php echo $this->formRadio($form->get('type'));?>
+            <?php echo $this->formElementErrors($form->get('type'), array('class' => 'error_list'));?>
+        </div>
+    </div>
+
+    <div class="control-group">
+    	<?php echo $this->formLabel($form->get('company'));?>
+        <div class="controls">
+        	<?php echo $this->formInput($form->get('company'));?>
+            <?php echo $this->formElementErrors($form->get('company'), array('class' => 'error_list'));?>
+        </div>
+    </div>
+    
+    <div class="control-group">
+    	<?php echo $this->formLabel($form->get('logo'));?>
+        <div class="controls">
+        	<?php echo $this->formFile($form->get('logo'));?>
+            <?php echo $this->formElementErrors($form->get('logo'), array('class' => 'error_list'));?>
+        </div>
+    </div>
+    
+    <div class="control-group">
+    	<?php echo $this->formLabel($form->get('url'));?>
+    	<div class="controls">
+    		<?php echo $this->formUrl($form->get('url'));?>
+            <?php echo $this->formElementErrors($form->get('url'), array('class' => 'error_list'));?>
+        </div>
+    </div>
+    
+    <div class="control-group">
+                <?php echo $this->formLabel($form->get('position'));?>
+                <div class="controls">
+                    <?php echo $this->formInput($form->get('position'));?>
+                    <?php echo $this->formElementErrors($form->get('position'), array('class' => 'error_list'));?>
+                </div>
+            </div>
+    
+    <div class="control-group">
+    	<?php echo $this->formLabel($form->get('location'));?>
+        <div class="controls">
+        	<?php echo $this->formInput($form->get('location'));?>
+            <?php echo $this->formElementErrors($form->get('location'), array('class' => 'error_list'));?>
+        </div>
+    </div>
+
+    <div class="control-group">
+    	<?php echo $this->formLabel($form->get('description'));?>
+        <div class="controls">
+        	<?php echo $this->formTextarea($form->get('description'));?>
+            <?php echo $this->formElementErrors($form->get('description'), array('class' => 'error_list'));?>
+        </div>
+    </div>
+    
+    <div class="control-group">
+    	<?php echo $this->formLabel($form->get('how_to_play'));?>
+        <div class="controls">
+        	<?php echo $this->formTextarea($form->get('how_to_play'));?>
+            <?php echo $this->formElementErrors($form->get('how_to_play'), array('class' => 'error_list'));?>
+        </div>
+    </div>
+    
+    <div class="control-group">
+    	<?php echo $this->formLabel($form->get('is_public'));?>
+        <div class="controls">
+        	<?php echo $this->formMultiCheckbox($form->get('is_public'));?>
+            <?php echo $this->formElementErrors($form->get('is_public'), array('class' => 'error_list'));?>
+        </div>
+    </div>
+
+    <div class="control-group">
+    	<?php echo $this->formLabel($form->get('email'));?>
+        <div class="controls">
+        	<?php echo $this->formInput($form->get('email'));?>
+            <?php echo $this->formElementErrors($form->get('email'), array('class' => 'error_list'));?>
+        </div>
+    </div>
+    
+    <div class="control-group">
+        <div class="controls">
+            <?php echo $this->formSubmit($form->get('submit'), array('class' => 'btn'));?>
+        </div>
+    </div>
+<?php
+    echo $this->form()->closeTag();
+?>

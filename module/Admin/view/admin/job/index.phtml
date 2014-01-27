@@ -1,0 +1,38 @@
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Category</th>
+                <th>Type</th>
+                <th>Company</th>
+                <th>Location</th>
+                <th>Public</th>
+                <th>Activated</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($this->jobs as $job):?>
+                <tr>
+                    <td><?php echo $job->id_job;?></td>
+                    <td><?php echo $job->id_category;?></td>
+                    <td><?php echo $job->type;?></td>
+                    <td><?php echo $job->company;?></td>
+                    <td><?php echo $job->location;?></td>
+                    <td><?php echo ($job->is_public) ? 'Yes' : 'No';?></td>
+                    <td><?php echo ($job->is_activated) ? 'Yes' : 'No';?></td>
+                    <td>
+                        <?php 
+                            $urlEdit = $this->url('zfcadmin/job/action',array('action' => 'edit', 'id' => $job->id_job), null, false);
+                            $urlDelete = $this->url('zfcadmin/job/action', array('action' => 'delete', 'id' => $job->id_job), null, false);
+                        ?>
+                        <a href="<?php echo $urlEdit;?>"><i class="fam-pencil"></i></a>
+                        <a href="<?php echo $urlDelete;?>"><i class="fam-delete"></i></a>
+                    </td>
+                </tr>
+            <?php endforeach;?>
+        </tbody>
+    </table>
+    <?php echo $this->paginationControl($this->paginator, 'Sliding', 'paginator'); ?>
+</div>

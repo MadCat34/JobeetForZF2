@@ -1,0 +1,42 @@
+<?php
+    $title = 'Add a category';
+    $this->headTitle($title);
+?>
+
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<?php
+    $form = $this->form;
+    $form->setAttribute('action', $this->url('zfcadmin/category/action', array('action' => 'add')));
+    $form->setAttribute('class', 'form-horizontal');
+    $form->prepare();
+
+    echo $this->form()->openTag($form);
+    echo $this->formHidden($form->get('id_category'));
+    echo $this->formHidden($form->get('csrf'));
+?>
+
+    <div class="control-group">
+        <?php echo $this->formLabel($form->get('name')->setLabelAttributes(array('class' => 'control-label')));?>
+        <div class="controls">
+            <?php echo $this->formInput($form->get('name'));?>
+            <?php echo $this->formElementErrors($form->get('name'), array('class' => 'error_list'));?>
+        </div>
+    </div>
+    
+    <div class="control-group">
+        <?php echo $this->formLabel($form->get('slug')->setLabelAttributes(array('class' => 'control-label')));?>
+        <div class="controls">
+            <?php echo $this->formInput($form->get('slug'));?>
+            <?php echo $this->formElementErrors($form->get('slug'), array('class' => 'error_list'));?>
+        </div>
+    </div>
+    
+    <div class="control-group">
+        <div class="controls">
+            <?php echo $this->formSubmit($form->get('submit'), array('class' => 'btn'));?>
+        </div>
+    </div>
+<?php
+    echo $this->form()->closeTag();
+?>

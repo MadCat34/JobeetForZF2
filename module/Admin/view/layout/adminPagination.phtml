@@ -1,0 +1,23 @@
+<?php if ($this->pageCount): ?>
+    <div class="pagination pagination-centered">
+        <ul>
+            <li <?php echo !isset($this->previous) ? 'class="disabled"' : ''; ?>>
+                <a href="<?php echo $this->url($this->route, array('page' => $this->first), false, true); ?>">&laquo;</a>
+            </li>
+            <li <?php echo!isset($this->previous) ? 'class="disabled"' : ''; ?>>
+                <a href="<?php echo $this->url($this->route, array('page' => $this->previous), false, true); ?>">&lsaquo;</a>
+            </li>
+            <?php foreach ($this->pagesInRange as $page): ?>
+                <li <?php echo $page == $this->current ? 'class="active"' : ''; ?>>
+                    <a href="<?php echo $this->url($this->route, array('page' => $page), false, true); ?>"><?php echo $page; ?></a>
+                </li>
+            <?php endforeach; ?>
+            <li <?php echo!isset($this->next) ? 'class="disabled"' : ''; ?>>
+                <a href="<?php echo $this->url($this->route, array('page' => $this->next), false, true); ?>">&rsaquo;</a>
+            </li>
+            <li <?php echo!isset($this->next) ? 'class="disabled"' : ''; ?>>
+                <a href="<?php echo $this->url($this->route, array('page' => $this->last), false, true); ?>">&raquo;</a>
+            </li>
+        </ul>
+    </div>
+<?php endif; ?>
