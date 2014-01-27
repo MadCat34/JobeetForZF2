@@ -1,12 +1,8 @@
 <?php
 namespace Front\Model;
 
-use Zend\Debug\Debug;
-
 use Zend\Db\Sql\Select;
-use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
-use Zend\Db\Sql\Where;
 
 class JobTable
 {
@@ -43,14 +39,14 @@ class JobTable
 
     public function countActiveJobs($idCategory, $nbDays)
     {
-        $result = $this->tableGateway->select(
-            array(
-                'id_category = ?' => (int)$idCategory,
-                'created_at >= ?' => date('Y-m-d H:i:s', time() - 86400 * $nbDays)
-            )
-        )->count();
-        
-        return $result;
+    	$result = $this->tableGateway->select(
+    		array(
+    			'id_category = ?' => (int)$idCategory,
+    			'created_at >= ?' => date('Y-m-d H:i:s', time() - 86400 * $nbDays)
+    		)
+    	)->count();
+    	
+    	return $result;
     }
     
     public function fetchAllByIdCategory($idCategory, $limit = 10, $nbDays = 30)
@@ -96,7 +92,6 @@ class JobTable
         $data = array(
             'id_job' => $job->idJob,
             'id_category' => $job->idCategory,
-            'id_user' => $job->idUser,
             'type' => $job->type,
             'company' => $job->company,
             'logo' => $job->logo,
@@ -104,11 +99,11 @@ class JobTable
             'position' => $job->position,
             'location' => $job->location,
             'description' => $job->description,
-            'howToPlay' => $job->howToPlay,
-            'isPublic' => $job->isPublic,
-            'isActivated' => $job->isActivated,
+            'how_to_play' => $job->howToPlay,
+            'is_public' => $job->isPublic,
+            'is_activated' => $job->isActivated,
             'email' => $job->email,
-            'createdAt' => $job->createdAt
+            'created_at' => $job->createdAt
         );
 
         $id = (int)$job->idJob;

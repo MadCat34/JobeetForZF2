@@ -1,0 +1,116 @@
+<?php
+    $this->headLink()->appendStylesheet('/css/main.css');
+    $this->headLink()->appendStylesheet('/css/job.css');
+    $title = 'New job';
+    $this->headTitle($title);
+?>
+
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<?php
+    $form = $this->form;
+    $form->setAttribute('action', $this->url('add_job'));
+    $form->prepare();
+
+    echo $this->form()->openTag($form);
+    echo $this->formHidden($form->get('id_job'));
+    echo $this->formHidden($form->get('csrf'));
+?>
+    <table id="category_form">
+        <tfoot>
+            <tr>
+                <td colspan="2">
+                    <?php echo $this->formSubmit($form->get('submit'));?>
+                </td>
+              </tr>
+        </tfoot>
+        <tbody>
+            <tr>
+                <th><?php echo $this->formLabel($form->get('id_category'));?></th>
+                <td>
+                    <?php echo $this->formSelect($form->get('id_category'));?>
+                    <?php echo $this->formElementErrors($form->get('id_category'), array('class' => 'error_list'));?>
+                </td>
+            </tr>
+            <tr>
+                <th><?php echo $this->formLabel($form->get('type'));?></th>
+                <td>
+                    <?php echo $this->formRadio($form->get('type'));?>
+                    <?php echo $this->formElementErrors($form->get('type'), array('class' => 'error_list'));?>
+                </td>
+            </tr>
+            <tr>
+                <th><?php echo $this->formLabel($form->get('company'));?></th>
+                <td>
+                    <?php echo $this->formInput($form->get('company'));?>
+                    <?php echo $this->formElementErrors($form->get('company'), array('class' => 'error_list'));?>
+                </td>
+            </tr>
+            <tr>
+                <th><?php echo $this->formLabel($form->get('logo'));?></th>
+                <td>
+                    <?php echo $this->formFile($form->get('logo'));?>
+                    <?php echo $this->formElementErrors($form->get('logo'), array('class' => 'error_list'));?>
+                </td>
+            </tr>
+            <tr>
+                <th><?php echo $this->formLabel($form->get('url'));?></th>
+                <td>
+                    <?php echo $this->formUrl($form->get('url'));?>
+                    <?php echo $this->formElementErrors($form->get('url'), array('class' => 'error_list'));?>
+                </td>
+            </tr>
+            <tr>
+                <th><?php echo $this->formLabel($form->get('position'));?></th>
+                <td>
+                    <?php echo $this->formInput($form->get('position'));?>
+                    <?php echo $this->formElementErrors($form->get('position'), array('class' => 'error_list'));?>
+                </td>
+            </tr>
+            <tr>
+                <th><?php echo $this->formLabel($form->get('location'));?></th>
+                <td>
+                    <?php echo $this->formInput($form->get('location'));?>
+                    <?php echo $this->formElementErrors($form->get('location'), array('class' => 'error_list'));?>
+                </td>
+            </tr>
+            <tr>
+                <th><?php echo $this->formLabel($form->get('description'));?></th>
+                <td>
+                    <?php echo $this->formTextarea($form->get('description'));?>
+                    <?php echo $this->formElementErrors($form->get('description'), array('class' => 'error_list'));?>
+                </td>
+            </tr>
+            <tr>
+                <th><?php echo $this->formLabel($form->get('how_to_play'));?></th>
+                <td>
+                    <?php echo $this->formTextarea($form->get('how_to_play'));?>
+                    <?php echo $this->formElementErrors($form->get('how_to_play'), array('class' => 'error_list'));?>
+                </td>
+            </tr>
+            <tr>
+                <th><?php echo $this->formLabel($form->get('is_public'));?></th>
+                <td>
+                    <?php echo $this->formMultiCheckbox($form->get('is_public'));?>
+                    <?php echo $this->formElementErrors($form->get('is_public'), array('class' => 'error_list'));?>
+                </td>
+            </tr>
+            <tr>
+                <th><?php echo $this->formLabel($form->get('is_activated'));?></th>
+                <td>
+                    <?php echo $this->formRadio($form->get('is_activated'));?>
+                    <?php echo $this->formElementErrors($form->get('is_activated'), array('class' => 'error_list'));?>
+                </td>
+            </tr>
+            <tr>
+                <th><?php echo $this->formLabel($form->get('email'));?></th>
+                <td>
+                    <?php echo $this->formInput($form->get('email'));?>
+                    <?php echo $this->formElementErrors($form->get('email'), array('class' => 'error_list'));?>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+<?php
+    echo $this->form()->closeTag();
+?>

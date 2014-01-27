@@ -7,6 +7,28 @@ return array(
     ),
     'router' => array(
         'routes' => array(
+            'add_category' => array(
+                'type'    => 'Segment',
+                'options' => array(
+                    'route'    => '/add/category[/]',
+                    'defaults' => array(
+                        'module'     => 'Front',
+                        'controller' => 'Front\Controller\Category',
+                        'action'     => 'add',
+                    ),
+                ),
+            ),
+            'add_job' => array(
+                'type'    => 'Segment',
+                'options' => array(
+                    'route'    => '/add/job[/]',
+                    'defaults' => array(
+                        'module'     => 'Front',
+                        'controller' => 'Front\Controller\Job',
+                        'action'     => 'add',
+                    ),
+                ),
+            ),
             'list_category_page' => array(
                 'type'    => 'Segment',
                 'options' => array(
