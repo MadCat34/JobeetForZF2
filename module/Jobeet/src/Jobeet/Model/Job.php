@@ -1,13 +1,15 @@
 <?php
-namespace Front\Model;
+namespace Jobeet\Model;
 
 use Zend\InputFilter\InputFilterAwareInterface;
 use Zend\InputFilter\InputFilter;
+use Zend\Db\Adapter\AdapterAwareInterface;
+use Zend\Db\Adapter\AdapterInterface;
 
 class Job implements InputFilterAwareInterface
 {
-    public $idJob;
-    public $idCategory;
+    public $id_job;
+    public $id_category;
     public $type;
     public $company;
     public $logo;
@@ -15,18 +17,19 @@ class Job implements InputFilterAwareInterface
     public $position;
     public $location;
     public $description;
-    public $howToPlay;
-    public $isPublic;
-    public $isActivated;
+    public $how_to_play;
+    public $is_public;
+    public $is_activated;
     public $email;
-    public $createdAt;
-    public $updatedAt;
+    public $created_at;
+    public $updated_at;
     protected $inputFilter;
+    protected $dbAdapter;
 
     public function exchangeArray($data)
     {
-        $this->idJob = (isset($data['id_job'])) ? $data['id_job'] : null;
-        $this->idCategory = (isset($data['id_category'])) ? $data['id_category'] : null;
+        $this->id_job = (isset($data['id_job'])) ? $data['id_job'] : null;
+        $this->id_category = (isset($data['id_category'])) ? $data['id_category'] : null;
         $this->type = (isset($data['type'])) ? $data['type'] : null;
         $this->company = (isset($data['company'])) ? $data['company'] : null;
         $this->logo = (isset($data['logo'])) ? $data['logo'] : null;
@@ -34,12 +37,12 @@ class Job implements InputFilterAwareInterface
         $this->position = (isset($data['position'])) ? $data['position'] : null;
         $this->location = (isset($data['location'])) ? $data['location'] : null;
         $this->description = (isset($data['description'])) ? $data['description'] : null;
-        $this->howToPlay = (isset($data['how_to_play'])) ? $data['how_to_play'] : null;
-        $this->isPublic = (isset($data['is_public'])) ? $data['is_public'] : 0;
-        $this->isActivated = (isset($data['is_activated'])) ? $data['is_activated'] : 1;
+        $this->how_to_play = (isset($data['how_to_play'])) ? $data['how_to_play'] : null;
+        $this->is_public = (isset($data['is_public'])) ? $data['is_public'] : 0;
+        $this->is_activated = (isset($data['is_activated'])) ? $data['is_activated'] : 1;
         $this->email = (isset($data['email'])) ? $data['email'] : null;
-        $this->createdAt = (isset($data['created_at'])) ? $data['created_at'] : null;
-        $this->updatedAt = (isset($data['updated_at'])) ? $data['updated_at'] : null;
+        $this->created_at = (isset($data['created_at'])) ? $data['created_at'] : null;
+        $this->updated_at = (isset($data['updated_at'])) ? $data['updated_at'] : null;
     }
     
     public function getArrayCopy()
@@ -246,5 +249,15 @@ class Job implements InputFilterAwareInterface
         }
         
         return $this->inputFilter;
+    }
+    
+    public function setDbAdapter(AdapterInterface $adapter)
+    {
+        $this->dbAdapter = $adapter;
+    }
+    
+    public function getDbAdapter()
+    {
+        return $this->dbAdapter;
     }
 }

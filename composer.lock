@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "485a575ece656a6e47dead561a5e72a7",
+    "hash": "786c9324e3c7215d9e4e128ea1381c80",
     "packages": [
         {
             "name": "bjyoungblood/bjy-profiler",
@@ -226,6 +226,59 @@
                 "zf2"
             ],
             "time": "2013-10-31 15:48:16"
+        },
+        {
+            "name": "zf-commons/zfc-admin",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ZF-Commons/ZfcAdmin.git",
+                "reference": "7dab378720ddbb2ce7c8d505c4ef9e7701fa6a8d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ZF-Commons/ZfcAdmin/zipball/7dab378720ddbb2ce7c8d505c4ef9e7701fa6a8d",
+                "reference": "7dab378720ddbb2ce7c8d505c4ef9e7701fa6a8d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "zendframework/zendframework": "2.*"
+            },
+            "suggest": {
+                "bjyoungblood/bjy-authorize": "Access control to protect ZfcAdmin against unauthorized users"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "ZfcAdmin": "src/"
+                },
+                "classmap": [
+                    "./Module.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Jurian Sluiman ",
+                    "email": "jurian@juriansluiman.nl",
+                    "homepage": "http://juriansluiman.nl/en/"
+                },
+                {
+                    "name": "Martin Shwalbe",
+                    "email": "martin.shwalbe@gmail.com",
+                    "homepage": "http://hounddog.github.io"
+                }
+            ],
+            "description": "A generic Admin module for ZF2.",
+            "homepage": "https://github.com/juriansluiman/ZfcAdmin",
+            "keywords": [
+                "zf2"
+            ],
+            "time": "2013-10-16 14:50:58"
         }
     ],
     "packages-dev": [
@@ -237,7 +290,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "zendframework/zend-developer-tools": 20,
-        "bjyoungblood/bjy-profiler": 20
+        "bjyoungblood/bjy-profiler": 20,
+        "zf-commons/zfc-admin": 20
     },
     "platform": {
         "php": ">=5.3.3"

@@ -1,8 +1,9 @@
 <?php
 namespace Front\Controller;
 
-use Zend\View\Model\ViewModel;
+use Jobeet\Controller\JobeetController;
 use Zend\Paginator\Paginator;
+use Zend\View\Model\ViewModel;
 
 class IndexController extends JobeetController
 {
@@ -13,7 +14,7 @@ class IndexController extends JobeetController
         $adapter = $this->jobTable->getAdapter();
 
         foreach ($categories as $category) {
-            $select = $this->jobTable->getActiveJobsForPagination($category->idCategory, $this->config['job_nb_valid_days']);
+            $select = $this->jobTable->getActiveJobsForPagination($category->id_category, $this->config['job_nb_valid_days']);
             $paginator = new Paginator(new \Zend\Paginator\Adapter\DbSelect($select, $adapter));
             $paginator->setCurrentPageNumber(0);
             $paginator->setDefaultItemCountPerPage($this->config['nb_job_by_category']);

@@ -1,13 +1,14 @@
 <?php
-namespace Front\Model;
+namespace Jobeet\Model;
 
 use Zend\Db\TableGateway\TableGateway;
+use Zend\Db\Adapter\Exception\InvalidQueryException;
 
 class CategoryTable
 {
-	/**
-	 * @var TableGateway
-	 */
+    /**
+     * @var TableGateway
+     */
     protected $tableGateway;
 
     public function __construct(TableGateway $tableGateway)
@@ -15,6 +16,18 @@ class CategoryTable
         $this->tableGateway = $tableGateway;
     }
 
+    public function getAdapter()
+    {
+    	return $this->tableGateway->getAdapter();
+    }
+    
+    public function getAll()
+    {
+        $select = new \Zend\Db\Sql\Select();
+        $select->from($this->tableGateway->getTable());
+        return $select;
+    }
+    
     public function fetchAll()
     {
         $resultSet = $this->tableGateway->select();
@@ -35,30 +48,30 @@ class CategoryTable
     
     public function getCategoryById($id)
     {
-    	$rowset = $this->tableGateway->select(array('id_category' => $id));
-    	$row = $rowset->current();
-    	
-    	if (!$row) {
-    		throw new \Exception("Could not find row with id $id");
-    	}
-    	
-    	return $row;
+        $rowset = $this->tableGateway->select(array('id_category' => $id));
+        $row = $rowset->current();
+        
+        if (!$row) {
+            throw new \Exception("Could not find row with id $id");
+        }
+        
+        return $row;
     }
 
     public function saveCategory(Category $category)
     {
         $data = array(
-            'id_category' => $category->idCategory,
+            'id_category' => $category->id_category,
             'name'  => $category->name,
             'slug'  => $category->slug
         );
 
-        $id = (int)$category->idCategory;
+        $id = (int)$category->id_category;
 
         if ($id == 0) {
             $this->tableGateway->insert($data);
-        } elseif ($this->getCategory($id)) {
-            $this->tableGateway->update($data, array('id_category' => $id));
+        } elseif ($this->getCategoryById($id)) {
+            $this->tableGateway->update($data, array('id_category = ?' => $id));
         } else {
             throw new \Exception('Form id does not exist');
         }
@@ -66,6 +79,10 @@ class CategoryTable
 
     public function deleteCategory($id)
     {
-        $this->tableGateway->delete(array('id' => $id));
+        try {
+            return $this->tableGateway->delete(array('id_category' => $id));
+        } catch (InvalidQueryException $e) {
+            return 0;
+        }
     }
 }

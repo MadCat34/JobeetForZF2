@@ -339,22 +339,25 @@ em
   display: inline;
 }
 
+#category_form,
 #job_form {
-  width: 760px;
-  margin: 0 auto;
+    width: 760px;
+    margin: 0 auto;
 }
 
+#category_form .radio_list label,
 #job_form .radio_list label {
-  margin-right: 15px;
+    margin-right: 15px;
 }
 
-
+#category_form th,
 #job_form th
 {
   white-space: nowrap;
   font-style: italic;
 }
 
+#category_form td, #category_form th,
 #job_form td, #job_form th
 {
   border-bottom: 1px solid #eee;
@@ -364,12 +367,14 @@ em
   padding: 7px;
 }
 
+#category_form tfoot td, #category_form tfoot th,
 #job_form tfoot td, #job_form tfoot th
 {
   border: 0;
   text-align: right;
 }
 
+#category_form .radio_list li,
 #job_form .radio_list li
 {
   display: inline;

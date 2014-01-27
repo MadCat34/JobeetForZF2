@@ -1,7 +1,7 @@
 <?php
-    namespace Front\Form;
+    namespace Jobeet\Form;
     use Zend\Form\Form;
-    use Front\Model\CategoryTable;
+    use Jobeet\Model\CategoryTable;
 
     class JobForm extends Form
     {
@@ -164,23 +164,6 @@
             
             $this->add(
                 array(
-                    'name' => 'is_activated',
-                    'type' => 'Radio',
-                    'attributes' => array(
-                        'id'    => 'is_activated'
-                    ),
-                    'options' => array(
-                        'label' => 'Activated ?',
-                        'value_options' => array(
-                            '1' => 'Oui',
-                            '0' => 'Non',
-                        )
-                    )
-                )
-            );
-            
-            $this->add(
-                array(
                     'name' => 'is_public',
                     'type' => 'MultiCheckbox',
                     'attributes' => array(
@@ -190,6 +173,23 @@
                         'label' => 'Public ?',
                         'value_options' => array(
                             '1' => 'Whether the job can also be published on affiliate websites or not.'
+                        )
+                    )
+                )
+            );
+            
+            $this->add(
+                array(
+                    'name' => 'is_activated',
+                    'type' => 'Radio',
+                    'attributes' => array(
+                        'value' => 1,
+                    ),
+                    'options' => array(
+                        'label' => 'Activated ?',
+                        'value_options' => array(
+                            1 => 'Oui',
+                            0 => 'Non',
                         )
                     )
                 )
@@ -214,6 +214,7 @@
                     'type' => 'Submit',
                     'attributes' => array(
                         'value' => 'Save your job',
+                        'class' => 'btn',
                         'id' => 'submit',
                     ),
                 )
@@ -226,7 +227,7 @@
             $selectData = array();
             
             foreach ($data as $key => $selectOption) {
-                $selectData[$selectOption["idCategory"]] = $selectOption["name"];
+                $selectData[$selectOption["id_category"]] = $selectOption["name"];
             }
 
             return $selectData;

@@ -1,7 +1,6 @@
 <?php
-    namespace Front\Form;
+    namespace Jobeet\Form;
     use Zend\Form\Form;
-    
     
     // Notre class CategoryForm étend l'élément \Zend\Form\Form; 
     class CategoryForm extends Form
@@ -35,16 +34,32 @@
             );
             
             // Le champs name, de type Text
-            $this->add(array(
-                'name' => 'name',       // Nom du champ
-                'type' => 'Text',       // Type du champ
-                'attributes' => array(
-                    'id'    => 'name'   // Id du champ
-                ),
-                'options' => array(
-                    'label' => 'Nom',   // Label à l'élément
-                ),
-            ));
+            $this->add(
+                array(
+                    'name' => 'name',       // Nom du champ
+                    'type' => 'Text',       // Type du champ
+                    'attributes' => array(
+                        'id'    => 'name'   // Id du champ
+                    ),
+                    'options' => array(
+                        'label' => 'Nom',   // Label à l'élément
+                    ),
+                )
+            );
+            
+            // Le champs slug, de type Text
+            $this->add(
+                array(
+                    'name' => 'slug',       // Nom du champ
+                    'type' => 'Text',       // Type du champ
+                    'attributes' => array(
+                        'id'    => 'name'   // Id du champ
+                    ),
+                    'options' => array(
+                        'label' => 'Slug',  // Label à l'élément
+                    ),
+                )
+            );
             
             // Le bouton Submit
             $this->add(array(
@@ -52,6 +67,7 @@
                 'type' => 'Submit',        // Type du champ
                 'attributes' => array(     // On va définir quelques attributs
                     'value' => 'Ajouter',  // comme la valeur
+                    'class' => 'btn',
                     'id' => 'submit',      // et l'id
                 ),
             ));

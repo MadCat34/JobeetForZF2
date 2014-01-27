@@ -1,8 +1,9 @@
 <?php
-namespace Front\Model;
+namespace Jobeet\Model;
 
 use Zend\Db\Sql\Select;
 use Zend\Db\TableGateway\TableGateway;
+use Zend\Db\Adapter\Exception\InvalidQueryException;
 
 class JobTable
 {
@@ -39,14 +40,14 @@ class JobTable
 
     public function countActiveJobs($idCategory, $nbDays)
     {
-    	$result = $this->tableGateway->select(
-    		array(
-    			'id_category = ?' => (int)$idCategory,
-    			'created_at >= ?' => date('Y-m-d H:i:s', time() - 86400 * $nbDays)
-    		)
-    	)->count();
-    	
-    	return $result;
+        $result = $this->tableGateway->select(
+            array(
+                'id_category = ?' => (int)$idCategory,
+                'created_at >= ?' => date('Y-m-d H:i:s', time() - 86400 * $nbDays)
+            )
+        )->count();
+        
+        return $result;
     }
     
     public function fetchAllByIdCategory($idCategory, $limit = 10, $nbDays = 30)
@@ -74,6 +75,13 @@ class JobTable
         return $select;
     }
 
+    public function getAll()
+    {
+        $select = new \Zend\Db\Sql\Select();
+        $select->from($this->tableGateway->getTable());
+        return $select;
+    }
+    
     public function getJob($id)
     {
         $id  = (int)$id;
@@ -90,8 +98,8 @@ class JobTable
     public function saveJob(Job $job)
     {
         $data = array(
-            'id_job' => $job->idJob,
-            'id_category' => $job->idCategory,
+            'id_job' => $job->id_job,
+            'id_category' => $job->id_category,
             'type' => $job->type,
             'company' => $job->company,
             'logo' => $job->logo,
@@ -99,14 +107,14 @@ class JobTable
             'position' => $job->position,
             'location' => $job->location,
             'description' => $job->description,
-            'how_to_play' => $job->howToPlay,
-            'is_public' => $job->isPublic,
-            'is_activated' => $job->isActivated,
+            'how_to_play' => $job->how_to_play,
+            'is_public' => $job->is_public,
+            'is_activated' => $job->is_activated,
             'email' => $job->email,
-            'created_at' => $job->createdAt
+            'created_at' => $job->created_at
         );
 
-        $id = (int)$job->idJob;
+        $id = (int)$job->id_job;
 
         if ($id == 0) {
             $this->tableGateway->insert($data);
@@ -124,6 +132,10 @@ class JobTable
 
     public function deleteJob($id)
     {
-        $this->tableGateway->delete(array('id' => $id));
+        try {
+            return $this->tableGateway->delete(array('id_job' => $id));
+        } catch (InvalidQueryException $e) {
+            return 0;
+        }
     }
 }

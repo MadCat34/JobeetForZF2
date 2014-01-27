@@ -137,7 +137,8 @@
   text-decoration: underline;
 }
 
-.pagination img
+.pagination img, .pagination img:hover
 {
   vertical-align: -2px;
+  border:0;
 }
