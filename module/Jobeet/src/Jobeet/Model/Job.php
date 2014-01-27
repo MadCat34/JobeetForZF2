@@ -98,7 +98,7 @@ class Job implements InputFilterAwareInterface
             $inputFilter->add(
                 array(
                     'name' => 'logo',
-                    'required' => true,
+                    'required' => false,
                 )
             );
             
