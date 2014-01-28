@@ -31,6 +31,13 @@
                     <?php echo $this->formElementErrors($form->get('name'), array('class' => 'error_list'));?>
                 </td>
             </tr>
+            <tr>
+                <th><?php echo $this->formLabel($form->get('slug'));?></th>
+                <td>
+                    <?php echo $this->formInput($form->get('slug'));?>
+                    <?php echo $this->formElementErrors($form->get('slug'), array('class' => 'error_list'));?>
+                </td>
+            </tr>
         </tbody>
     </table>
 <?php

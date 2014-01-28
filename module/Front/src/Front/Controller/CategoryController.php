@@ -62,6 +62,8 @@
                     $this->categoryTable->saveCategory($category);
     
                     return $this->redirect()->toRoute('home');
+                } else {
+                    die ('error');
                 }
             }
             

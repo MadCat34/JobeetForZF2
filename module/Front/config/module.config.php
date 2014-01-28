@@ -35,7 +35,7 @@ return array(
                     'route'    => '/category/:slug[/page/[:page]]',
                     'constraints' => array(
                         'page'   => '[0-9]+',
-                        'slug'   => '[a-z]+'
+                        'slug'   => '[a-z\-]+'
                     ),
                     'defaults' => array(
                         'module'     => 'Front',
