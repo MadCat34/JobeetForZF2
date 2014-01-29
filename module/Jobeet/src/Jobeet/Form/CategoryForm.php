@@ -15,10 +15,12 @@
             $this->setAttribute('method', 'post');
             
             // Le champs caché id_category
-            $this->add(array(
-                'name' => 'id_category', // Nom du champ
-                'type' => 'Hidden',      // Type du champ
-            ));
+            $this->add(
+                array(
+                    'name' => 'id_category', // Nom du champ
+                    'type' => 'Hidden',      // Type du champ
+                )
+            );
             
             // Champ Csrf, pour sécuriser le formulaire
             $this->add(

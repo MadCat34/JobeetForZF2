@@ -7,7 +7,7 @@
           <a href="">Feed</a>
         </div>
         <h1>
-            <a href="<?php echo $this->url('list_category_page', array('slug' => $result['category']->slug))?>">
+            <a href="<?php echo $this->url('home/list_category_page', array('slug' => $result['category']->slug))?>">
                 <?php echo $result['category']->name; ?>
             </a>
         </h1>
@@ -20,7 +20,7 @@
 
     <?php if (($count = (int)$result['activeJobs'] - $this->nbJobByCategory) > 0): ?>
         <div class="more_jobs">
-          et <a href="<?php echo $this->url('list_category_page', array('slug' => $result['category']->slug))?>">
+          et <a href="<?php echo $this->url('home/list_category_page', array('slug' => $result['category']->slug))?>">
                 <?php echo $count;?>
             </a> autres...
         </div>
