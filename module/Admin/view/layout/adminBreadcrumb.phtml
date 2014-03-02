@@ -2,11 +2,11 @@
     $container = $this->navigation()->breadcrumbs();
 ?>
     <ul class="breadcrumb">
-        <li>Vous êtes ici :</li>
+        <li>You are here :</li>
         <?php foreach($this->pages as $page): ?>
             <?php if( ! $page->isActive()): ?>
                 <li>
-                    <a href="<?php echo $page->getHref() ?>"><?php echo $page->getLabel() ?></a> 
+                    <a href="<?php echo $page->getHref() ?>"><?php echo $page->getLabel() ?></a>
                     <span class="divider"> &gt; </span>
                 </li>
             <?php else: ?>
