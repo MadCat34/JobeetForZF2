@@ -3,7 +3,7 @@
     $this->headTitle($title);
 ?>
 
-<h1><?php echo $this->escapeHtml($title); ?></h1>
+<h1><?php echo $this->escapeHtml($this->translate($title)); ?></h1>
 
 <?php
     $form = $this->form;
@@ -23,7 +23,7 @@
             <?php echo $this->formElementErrors($form->get('name'), array('class' => 'error_list'));?>
         </div>
     </div>
-    
+
     <div class="control-group">
         <?php echo $this->formLabel($form->get('slug')->setLabelAttributes(array('class' => 'control-label')));?>
         <div class="controls">
@@ -31,7 +31,7 @@
             <?php echo $this->formElementErrors($form->get('slug'), array('class' => 'error_list'));?>
         </div>
     </div>
-    
+
     <div class="control-group">
         <div class="controls">
             <?php echo $this->formSubmit($form->get('submit'), array('class' => 'btn'));?>

@@ -23,11 +23,10 @@ $form->setAttribute('method', 'post');
             <dd><?php echo $this->formCaptcha($element) . $this->formElementErrors($element) ?></dd>
         <?php else: ?>
             <dd><?php echo $this->formInput($element) . $this->formElementErrors($element) ?></dd>
-        <?php
-endif;    <?php endforeach ?>
-    </dl>
+        <?php endif; ?>
+    <?php endforeach ?>
+</dl>
 <?php if ($this->redirect): ?>
-<input type="hidden" name="redirect"
-	value="<?php echo $this->escapeHtml($this->redirect) ?>" />
+    <input type="hidden" name="redirect" value="<?php echo $this->escapeHtml($this->redirect) ?>" />
 <?php endif ?>
 <?php echo $this->form()->closeTag()?>

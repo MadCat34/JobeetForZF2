@@ -1,5 +1,5 @@
 <?php
-	Jobeet::slugify($text);
+    Jobeet::slugify($text);
 
     $this->headLink()->appendStylesheet('/css/jobs.css');
 ?>
@@ -11,14 +11,14 @@
             <td class="location"><?php echo $this->escapeHtml($job->location); ?></td>
             <td class="position">
                 <a href="<?php echo $this->url('job',
-                		array(
-							'company' => Jobeet::slugify($job->c),
-							'position' => Jobeet::slugify($job->position),
-							'location' => Jobeet::slugify($job->location),
-							'id'     => '[0-9]+',
-							'action'=>'get',
-							'id'=>$job->idJob));?>">
-                
+                        array(
+                            'company' => Jobeet::slugify($job->c),
+                            'position' => Jobeet::slugify($job->position),
+                            'location' => Jobeet::slugify($job->location),
+                            'id'     => '[0-9]+',
+                            'action'=>'get',
+                            'id'=>$job->idJob));?>">
+
                     <?php echo $this->escapeHtml($job->position); ?>
                 </a>
             </td>

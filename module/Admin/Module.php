@@ -15,23 +15,19 @@ class Module extends AbstractModule implements ConfigProviderInterface
 
     public function onBootstrap(MvcEvent $e)
     {
-        $e->getApplication()
-            ->getServiceManager()
-            ->get('translator');
         $eventManager = $e->getApplication()->getEventManager();
         $moduleRouteListener = new ModuleRouteListener();
         $eventManager->attach(MvcEvent::EVENT_RENDER, function ($e)
         {
             $flashMessenger = new FlashMessenger();
-            
+
             $messages = array_merge($flashMessenger->getSuccessMessages(), $flashMessenger->getInfoMessages(), $flashMessenger->getErrorMessages(), $flashMessenger->getMessages());
-            
+
             if ($flashMessenger->hasMessages()) {
-                $e->getViewModel()
-                    ->setVariable('flashMessages', $messages);
+                $e->getViewModel()->setVariable('flashMessages', $messages);
             }
         });
-        
+
         $moduleRouteListener->attach($eventManager);
     }
 
@@ -69,12 +65,11 @@ class Module extends AbstractModule implements ConfigProviderInterface
     {
         return array(
             'factories' => array(
-                'jobeet_flashmessenger' => function ($sm)
-                {
+                'jobeet_flashmessenger' => function ($sm) {
                     $viewModel = $sm->get('view_manager')->getViewModel();
                     $controller = $sm->get('ControllerPluginManager');
                     $flashMessenger = $controller->get('FlashMessenger');
-                    
+
                     return $viewModel->setVariable('messages', $flashMessenger->getMessages());
                 }
             )

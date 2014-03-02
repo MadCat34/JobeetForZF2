@@ -9,10 +9,10 @@ return array(
     'bjyauthorize' => array(
         // default role for unauthenticated users
         'default_role' => 'guest',
-        
+
         // identity provider service name
         'identity_provider' => 'BjyAuthorize\Provider\Identity\ZfcUserZendDb',
-        
+
         // Role providers to be used to load all available roles into Zend\Permissions\Acl\Acl
         // Keys are the provider service names, values are the options to be passed to the provider
         'role_providers' => array(
@@ -22,7 +22,7 @@ return array(
                 'parent_role_field' => 'parent'
             )
         ),
-        
+
         // Guard listeners to be attached to the application event manager
         'guards' => array(
             'BjyAuthorize\Guard\Route' => array(
@@ -42,7 +42,9 @@ return array(
                 array('route' => 'home/authenticate', 'roles' => array('guest', 'user', 'admin')),
                 array('route' => 'home/register', 'roles' => array('guest')),
                 array('route' => 'home/list_category_page', 'roles' => array('guest', 'user', 'admin')),
-                array('route' => 'home/get_job', 'roles' => array('guest', 'user', 'admin'))
+                array('route' => 'home/get_job', 'roles' => array('guest', 'user', 'admin')),
+
+                array('route' => 'module-setup-install', 'roles' => array('guest', 'user', 'admin')),
             )
         )
     )

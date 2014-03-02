@@ -1,4 +1,4 @@
-<?php 
+<?php
 echo $this->doctype();
 ?>
 
@@ -11,7 +11,7 @@ echo $this->doctype();
         <?php echo $this->headLink()->prependStylesheet('/css/admin.css');?>
         <?php echo $this->headLink()->prependStylesheet('/css/bootstrap.min.css') ?>
         <?php echo $this->headLink()->prependStylesheet('/css/fam-icons.css');?>
-    
+
         <!-- Scripts -->
         <?php echo $this->headScript()->prependFile('/js/bootstrap.min.js')
                                       ->prependFile('//code.jquery.com/jquery.min.js')
@@ -51,7 +51,7 @@ echo $this->doctype();
             <?php echo $this->content; ?>
             <hr>
             <footer>
-                <p>&copy; 2013 par Romain Bastide - tutoriel Jobeet pour ZF2</p>
+                <p>&copy; 2013 by Romain Bastide - Jobeet tutorial for ZF2</p>
             </footer>
         </div> <!-- /container -->
         <?php echo $this->inlineScript() ?>

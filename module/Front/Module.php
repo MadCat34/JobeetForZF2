@@ -42,7 +42,7 @@ class Module extends AbstractModule implements ConfigProviderInterface
     {
         $matches = $e->getRouteMatch();
         $module = $matches->getParam('module');
-        
+
         if (strpos($module, __NAMESPACE__) === 0) {
             $templatePathStack = $this->serviceManager->get('Zend\View\Resolver\TemplatePathStack');
             $templatePathStack->addPath(__DIR__ . '/view');
@@ -53,8 +53,7 @@ class Module extends AbstractModule implements ConfigProviderInterface
     {
         return array(
             'factories' => array(
-                'Front\Controller\Category' => function (ControllerManager $cm)
-                {
+                'Front\Controller\Category' => function (ControllerManager $cm) {
                     $sm = $cm->getServiceLocator();
                     $config = $sm->get('Config');
                     $config = isset($config['jobeet']) ? $config['jobeet'] : array();
@@ -64,8 +63,7 @@ class Module extends AbstractModule implements ConfigProviderInterface
                     $controller->setConfig($config);
                     return $controller;
                 },
-                'Front\Controller\Job' => function (ControllerManager $cm)
-                {
+                'Front\Controller\Job' => function (ControllerManager $cm) {
                     $sm = $cm->getServiceLocator();
                     $config = $sm->get('Config');
                     $config = isset($config['jobeet']) ? $config['jobeet'] : array();
@@ -75,8 +73,7 @@ class Module extends AbstractModule implements ConfigProviderInterface
                     $controller->setConfig($config);
                     return $controller;
                 },
-                'Front\Controller\Index' => function (ControllerManager $cm)
-                {
+                'Front\Controller\Index' => function (ControllerManager $cm) {
                     $sm = $cm->getServiceLocator();
                     $config = $sm->get('Config');
                     $config = isset($config['jobeet']) ? $config['jobeet'] : array();
@@ -98,7 +95,7 @@ class Module extends AbstractModule implements ConfigProviderInterface
             ),
         );
     }
-    
+
     public function getConfig()
     {
         return include __DIR__ . '/config/module.config.php';

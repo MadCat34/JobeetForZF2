@@ -5,7 +5,7 @@
 
 <?php if(isset($this->exception) && $this->exception instanceof Exception): ?>
 <hr/>
-<h2><?php echo $this->translate('Additional information') ?>:</h2>
+<h2><?php echo 'Additional information' ?>:</h2>
 <h3><?php echo get_class($this->exception); ?></h3>
 <dl>
     <dt><?php echo $this->translate('File') ?>:</dt>
@@ -26,7 +26,7 @@
     if ($e) :
 ?>
 <hr/>
-<h2><?php echo $this->translate('Previous exceptions') ?>:</h2>
+<h2><?php echo 'Previous exceptions'; ?>:</h2>
 <ul class="unstyled">
     <?php while($e) : ?>
     <li>
@@ -55,7 +55,7 @@
 
 <?php else: ?>
 
-<h3><?php echo $this->translate('No Exception available') ?></h3>
+<h3><?php echo 'No Exception available'; ?></h3>
 
 <?php endif ?>
 

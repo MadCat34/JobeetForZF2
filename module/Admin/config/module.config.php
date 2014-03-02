@@ -212,7 +212,7 @@ return array(
     ),
     'service_manager' => array(
         'factories' => array(
-            'admin_navigation' => 'ZfcAdmin\Navigation\Service\AdminNavigationFactory'
-        )
+            'admin_navigation' => 'ZfcAdmin\Navigation\Service\AdminNavigationFactory',
+        ),
     )
 );

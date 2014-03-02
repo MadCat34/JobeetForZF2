@@ -6,22 +6,22 @@ use Jobeet\Model\CategoryTable;
 class JobForm extends Form
 {
     protected $categoryTable = null;
-    
+
     public function __construct(CategoryTable $table)
     {
         parent::__construct('Job');
         $this->setAttribute('method', 'post');
         $this->setAttribute('enctype', 'multipart/form-data');
-        
+
         $this->categoryTable = $table;
-        
+
         $this->add(
             array(
                 'name' => 'id_job',
                 'type' => 'Hidden',
             )
         );
-        
+
         $this->add(
             array(
                 'name' => 'csrf',
@@ -33,7 +33,7 @@ class JobForm extends Form
                 )
             )
         );
-        
+
         $this->add(
             array(
                 'name' => 'id_category',
@@ -44,7 +44,7 @@ class JobForm extends Form
                 'options' => array(
                     'label' => 'Catégory',
                     'value_options' => $this->getCategoryOptions(),
-                    'empty_option'  => '--- Sélectionnez une categorie---'
+                    'empty_option'  => '--- Select a category ---'
                 ),
             )
         );
@@ -59,8 +59,8 @@ class JobForm extends Form
                 'options' => array(
                     'label' => 'Type',
                     'value_options' => array(
-                        'Plein-temps' => 'Plein-temps',
-                        'Mi-temps' => 'Mi-temps',
+                        'Plein-temps' => 'Full-time',
+                        'Mi-temps' => 'Half-time',
                         'Freelance' => 'Freelance'
                     )
                 )
@@ -79,7 +79,7 @@ class JobForm extends Form
                 )
             )
         );
-        
+
         $this->add(
             array(
                 'name' => 'logo',
@@ -92,7 +92,7 @@ class JobForm extends Form
                 )
             )
         );
-        
+
         $this->add(
             array(
                 'name' => 'url',
@@ -118,7 +118,7 @@ class JobForm extends Form
                 )
             )
         );
-        
+
         $this->add(
             array(
                 'name' => 'location',
@@ -146,7 +146,7 @@ class JobForm extends Form
                 )
             )
         );
-        
+
         $this->add(
             array(
                 'name' => 'how_to_play',
@@ -161,7 +161,7 @@ class JobForm extends Form
                 )
             )
         );
-        
+
         $this->add(
             array(
                 'name' => 'is_public',
@@ -177,7 +177,7 @@ class JobForm extends Form
                 )
             )
         );
-        
+
         $this->add(
             array(
                 'name' => 'is_activated',
@@ -194,7 +194,7 @@ class JobForm extends Form
                 )
             )
         );
-        
+
         $this->add(
             array(
                 'name' => 'email',
@@ -207,7 +207,7 @@ class JobForm extends Form
                 )
             )
         );
-        
+
         $this->add(
             array(
                 'name' => 'submit',
@@ -220,12 +220,12 @@ class JobForm extends Form
             )
         );
     }
-    
+
     public function getCategoryOptions()
     {
         $data  = $this->categoryTable->fetchAll()->toArray();
         $selectData = array();
-        
+
         foreach ($data as $key => $selectOption) {
             $selectData[$selectOption["id_category"]] = $selectOption["name"];
         }

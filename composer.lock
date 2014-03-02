@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "44aa479ce0984c59a4fb709df5ea76dc",
+    "hash": "ff13b3cf96d6d3f7e1f5d28b653edf99",
     "packages": [
         {
             "name": "bjyoungblood/bjy-authorize",
@@ -125,12 +125,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/ZendDeveloperTools.git",
-                "reference": "9a8848612c0c6d9890dd6533b3dd5045745e1299"
+                "reference": "b577e10f92cb449cf70cfa1b6d069ee8acbe7b21"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/ZendDeveloperTools/zipball/9a8848612c0c6d9890dd6533b3dd5045745e1299",
-                "reference": "9a8848612c0c6d9890dd6533b3dd5045745e1299",
+                "url": "https://api.github.com/repos/zendframework/ZendDeveloperTools/zipball/b577e10f92cb449cf70cfa1b6d069ee8acbe7b21",
+                "reference": "b577e10f92cb449cf70cfa1b6d069ee8acbe7b21",
                 "shasum": ""
             },
             "require": {
@@ -178,7 +178,7 @@
                 "module",
                 "zf2"
             ],
-            "time": "2014-01-02 17:27:54"
+            "time": "2014-02-20 14:58:50"
         },
         {
             "name": "zendframework/zendframework",
@@ -407,12 +407,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ZF-Commons/ZfcUser.git",
-                "reference": "c5d6fe51643b8d774ac930389793ea629b3cce70"
+                "reference": "f24572e5b60ea6995eaa04b07a9d06b6ab557e51"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ZF-Commons/ZfcUser/zipball/c5d6fe51643b8d774ac930389793ea629b3cce70",
-                "reference": "c5d6fe51643b8d774ac930389793ea629b3cce70",
+                "url": "https://api.github.com/repos/ZF-Commons/ZfcUser/zipball/f24572e5b60ea6995eaa04b07a9d06b6ab557e51",
+                "reference": "f24572e5b60ea6995eaa04b07a9d06b6ab557e51",
                 "shasum": ""
             },
             "require": {
@@ -465,7 +465,7 @@
             "keywords": [
                 "zf2"
             ],
-            "time": "2014-01-14 16:59:51"
+            "time": "2014-02-27 17:21:36"
         }
     ],
     "packages-dev": [

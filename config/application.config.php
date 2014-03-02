@@ -4,7 +4,7 @@ return array(
         'BjyProfiler',
         'ZfcBase',
         'ZfcUser',
-        'BjyAuthorize',
+        //'BjyAuthorize',
         'ZendDeveloperTools',
         'ZfcAdmin',
         'Front',
