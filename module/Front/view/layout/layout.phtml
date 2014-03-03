@@ -19,17 +19,16 @@
                     </h1>
                     <div id="sub_header">
                         <div class="post">
-                            <h2>Ask for people</h2>
                             <div>
-                                <a href="#">Post a Job</a>
+                                <a href="#"><?php echo $this->translate("Post a Job");?></a>
                             </div>
                         </div>
                         <div class="search">
-                            <h2>Ask for a job</h2>
+                            <h2><?php echo $this->translate("Ask for a job");?></h2>
                             <form action="#" method="get">
                                 <input type="text" name="keywords" id="search_keywords" />
                                 <input type="submit" value="search" />
-                                <div class="help">Enter some keywords (city, country, position, ...)</div>
+                                <div class="help"><?php echo $this->translate("Enter some keywords (city, country, position, ...)");?></div>
                             </form>
                         </div>
                     </div>
@@ -37,20 +36,20 @@
             </div>
             <div id="content">
                 <div class="content">
-                    <div id="job_history">Recent viewed jobs:<?php echo $this->jobSessions(); ?></div>
+                    <div id="job_history"><?php echo $this->translate("Recent viewed jobs");?>:<?php echo $this->jobSessions(); ?></div>
                     <?php echo $this->content; ?>
                 </div>
             </div>
             <div id="footer">
                 <div class="content">
                     <span class="symfony">
-                        <img src="/images/jobeet-mini.png" alt="logo jobeet" /> powered by <a href=""><img src="/images/zf2-logo.png" alt="Zend Framework 2" /></a>
+                        <img src="/images/jobeet-mini.png" alt="logo jobeet" /> <?php echo $this->translate("powered by");?> <a href=""><img src="/images/zf2-logo.png" alt="Zend Framework 2" /></a>
                     </span>
                     <ul>
-                        <li><a href="">About Jobeet</a></li>
-                        <li class="feed"><a href="">Full feed</a></li>
-                        <li><a href="">Jobeet API</a></li>
-                        <li class="last"><a href="">Affiliates</a></li>
+                        <li><a href=""><?php echo $this->translate("About Jobeet");?></a></li>
+                        <li class="feed"><a href=""><?php echo $this->translate("Full feed");?></a></li>
+                        <li><a href=""><?php echo $this->translate("Jobeet API");?></a></li>
+                        <li class="last"><a href=""><?php echo $this->translate("Affiliates");?></a></li>
                     </ul>
                 </div>
             </div>

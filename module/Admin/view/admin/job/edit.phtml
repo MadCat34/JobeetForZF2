@@ -1,5 +1,5 @@
 <?php
-    $title = 'Edit job';
+    $title = $this->translate('Edit job');
     $this->headTitle($title);
 ?>
 
@@ -23,7 +23,7 @@
             <?php echo $this->formElementErrors($form->get('id_category'), array('class' => 'error_list'));?>
         </div>
     </div>
-    
+
     <div class="control-group">
         <?php echo $this->formLabel($form->get('type')->setLabelAttributes(array('class' => 'control-label')));?>
         <div class="controls">
@@ -39,7 +39,7 @@
             <?php echo $this->formElementErrors($form->get('company'), array('class' => 'error_list'));?>
         </div>
     </div>
-    
+
     <div class="control-group">
     	<?php echo $this->formLabel($form->get('logo'));?>
         <div class="controls">
@@ -47,7 +47,7 @@
             <?php echo $this->formElementErrors($form->get('logo'), array('class' => 'error_list'));?>
         </div>
     </div>
-    
+
     <div class="control-group">
     	<?php echo $this->formLabel($form->get('url'));?>
     	<div class="controls">
@@ -55,7 +55,7 @@
             <?php echo $this->formElementErrors($form->get('url'), array('class' => 'error_list'));?>
         </div>
     </div>
-    
+
     <div class="control-group">
                 <?php echo $this->formLabel($form->get('position'));?>
                 <div class="controls">
@@ -63,7 +63,7 @@
                     <?php echo $this->formElementErrors($form->get('position'), array('class' => 'error_list'));?>
                 </div>
             </div>
-    
+
     <div class="control-group">
     	<?php echo $this->formLabel($form->get('location'));?>
         <div class="controls">
@@ -79,7 +79,7 @@
             <?php echo $this->formElementErrors($form->get('description'), array('class' => 'error_list'));?>
         </div>
     </div>
-    
+
     <div class="control-group">
     	<?php echo $this->formLabel($form->get('how_to_play'));?>
         <div class="controls">
@@ -87,7 +87,7 @@
             <?php echo $this->formElementErrors($form->get('how_to_play'), array('class' => 'error_list'));?>
         </div>
     </div>
-    
+
     <div class="control-group">
     	<?php echo $this->formLabel($form->get('is_public'));?>
         <div class="controls">
@@ -103,7 +103,7 @@
             <?php echo $this->formElementErrors($form->get('email'), array('class' => 'error_list'));?>
         </div>
     </div>
-    
+
     <div class="control-group">
         <div class="controls">
             <?php echo $this->formSubmit($form->get('submit'), array('class' => 'btn'));?>

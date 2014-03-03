@@ -3,13 +3,13 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>Category</th>
-                <th>Type</th>
-                <th>Company</th>
-                <th>Location</th>
-                <th>Public</th>
-                <th>Activated</th>
-                <th>Actions</th>
+                <th><?php echo $this->translate("Category");?></th>
+                <th><?php echo $this->translate("Type");?></th>
+                <th><?php echo $this->translate("Company");?></th>
+                <th><?php echo $this->translate("Location");?></th>
+                <th><?php echo $this->translate("Public");?></th>
+                <th><?php echo $this->translate("Activated");?></th>
+                <th><?php echo $this->translate("Actions");?></th>
             </tr>
         </thead>
         <tbody>
@@ -20,10 +20,10 @@
                     <td><?php echo $job->type;?></td>
                     <td><?php echo $job->company;?></td>
                     <td><?php echo $job->location;?></td>
-                    <td><?php echo ($job->is_public) ? 'Yes' : 'No';?></td>
-                    <td><?php echo ($job->is_activated) ? 'Yes' : 'No';?></td>
+                    <td><?php echo ($job->is_public) ? $this->translate('Yes') : $this->translate('No');?></td>
+                    <td><?php echo ($job->is_activated) ? $this->translate('Yes') : $this->translate('No');?></td>
                     <td>
-                        <?php 
+                        <?php
                             $urlEdit = $this->url('zfcadmin/job/action',array('action' => 'edit', 'id' => $job->id_job), null, false);
                             $urlDelete = $this->url('zfcadmin/job/action', array('action' => 'delete', 'id' => $job->id_job), null, false);
                         ?>

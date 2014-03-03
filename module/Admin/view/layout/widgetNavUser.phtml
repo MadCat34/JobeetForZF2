@@ -2,8 +2,8 @@
     <?php if($this->zfcUserIdentity()): ?>
         <li><a><?php echo $this->zfcUserIdentity()->getDisplayname(); ?></a></li>
         <li class="divider-vertical"></li>
-        <li><a href="<?php echo $this->url('zfcadmin/logout')?>">Logout <i class="fam-door-out"></i></a></li>
+        <li><a href="<?php echo $this->url('zfcadmin/logout')?>"><?php echo $this->translate("Logout");?> <i class="fam-door-out"></i></a></li>
         <li class="divider-vertical"></li>
-        <li><a target="_blank" href="<?php echo $this->url('home')?>">Go to website <i class="fam-house"></i></a></li>
+        <li><a target="_blank" href="<?php echo $this->url('home')?>"><?php echo $this->translate("Go to website");?> <i class="fam-house"></i></a></li>
     <?php endif;?>
 </ul>

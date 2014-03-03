@@ -1,5 +1,5 @@
 <?php
-    $title = 'Edit category';
+    $title = $this->translate('Edit category');
     $this->headTitle($title);
 ?>
 
@@ -42,7 +42,7 @@
             ?>
         </div>
     </div>
-    
+
     <div class="control-group">
         <div class="controls">
             <?php echo $this->formSubmit($form->get('submit'), array('class' => 'btn'));?>

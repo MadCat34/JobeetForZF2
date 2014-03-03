@@ -10,7 +10,7 @@ $form->setAttribute('method', 'post');
         <?php echo $this->form()->openTag($form);?>
             <fieldset>
             <legend class="legend">
-                <i class="fam-key"></i> Login
+                <i class="fam-key"></i> <?php echo $this->translate("Login");?>
             </legend>
             <div class="control-group">
                     <?php echo $this->formElementErrors($form->get('identity'))?>

@@ -2,7 +2,7 @@
     $container = $this->navigation()->breadcrumbs();
 ?>
     <ul class="breadcrumb">
-        <li>You are here :</li>
+        <li><?php echo $this->translate("You are here");?> :</li>
         <?php foreach($this->pages as $page): ?>
             <?php if( ! $page->isActive()): ?>
                 <li>

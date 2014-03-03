@@ -1,10 +1,12 @@
 <div class="container">
-    <a href="<?php echo $this->url('zfcadmin/category/action', array('action' => 'add'), null, false);?>"><i class="fam-add"></i>New Category</a>
+    <a href="<?php echo $this->url('zfcadmin/category/action', array('action' => 'add'), null, false);?>">
+        <i class="fam-add"></i><?php echo $this->translate("New Category");?>
+    </a>
     <table class="table table-hover">
         <thead>
             <tr>
                 <th>#</th>
-                <th>Category</th>
+                <th><?php echo $this->translate("Category");?></th>
                 <th>Slug</th>
                 <th>Actions</th>
             </tr>

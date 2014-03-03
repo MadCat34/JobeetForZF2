@@ -1,29 +1,29 @@
 <div class="container">
-    <h2>Accueil</h2>
+    <h2><?php echo $this->translate("Homepage");?></h2>
     <div class="row">
         <div class="span3">
-            <a href="<?php echo $this->url('zfcadmin/category');?>"><i class="fam-cog"></i> Categories</a>
+            <a href="<?php echo $this->url('zfcadmin/category');?>"><i class="fam-cog"></i> <?php echo $this->translate("Categories");?></a>
         </div>
         <div class="span9">
-            Categories management
+            <?php echo $this->translate("Categories management");?>
         </div>
     </div>
     <hr />
     <div class="row">
         <div class="span3">
-            <a href="<?php echo $this->url('zfcadmin/job');?>"><i class="fam-page"></i> Jobs</a>
+            <a href="<?php echo $this->url('zfcadmin/job');?>"><i class="fam-page"></i> <?php echo $this->translate("Jobs");?></a>
         </div>
         <div class="span9">
-            Jobs management
+            <?php echo $this->translate("Jobs management");?>
         </div>
     </div>
     <hr />
     <div class="row">
         <div class="span3">
-            <a href="#"><i class="fam-user"></i> Users</a>
+            <a href="#"><i class="fam-user"></i> <?php echo $this->translate("Users");?></a>
         </div>
         <div class="span9">
-            Users management
+            <?php echo $this->translate("Users management");?>
         </div>
     </div>
 </div>

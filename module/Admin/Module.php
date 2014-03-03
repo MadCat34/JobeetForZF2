@@ -9,6 +9,7 @@ use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 use ZfcBase\Module\AbstractModule;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
+use Zend\Mvc\I18n\Translator;
 
 class Module extends AbstractModule implements ConfigProviderInterface
 {

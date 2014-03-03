@@ -29,6 +29,7 @@ echo $this->doctype();
                                                                        ->setMaxDepth(1)
                                                                        ->setRenderInvisible(false)->render();?>
                     </div>
+                    <?php echo $this->partial( "userNav" ); ?>
                 </div>
             </div>
         </div>
@@ -51,7 +52,7 @@ echo $this->doctype();
             <?php echo $this->content; ?>
             <hr>
             <footer>
-                <p>&copy; 2013 by Romain Bastide - Jobeet tutorial for ZF2</p>
+                <p>&copy; 2013 <?php echo $this->translate('by');?> Romain Bastide - <?php echo $this->translate('Jobeet tutorial for ZF2');?></p>
             </footer>
         </div> <!-- /container -->
         <?php echo $this->inlineScript() ?>
