@@ -1,3 +1,7 @@
 !.gitignore
 .composer
+composer/
+zendframework/
+zf-commons/
+bjyoungblood/
 autoload.php
