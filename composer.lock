@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "ff13b3cf96d6d3f7e1f5d28b653edf99",
+    "hash": "9fb1f12a42690c0c6baf6e50ad7b8c3c",
     "packages": [
         {
             "name": "bjyoungblood/bjy-authorize",
@@ -79,12 +79,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bjyoungblood/BjyProfiler.git",
-                "reference": "1ad040a59791bf28eafe4d27d485877d925db43e"
+                "reference": "420b392f6fafff7eefca5e9615c347706ce8d8e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bjyoungblood/BjyProfiler/zipball/1ad040a59791bf28eafe4d27d485877d925db43e",
-                "reference": "1ad040a59791bf28eafe4d27d485877d925db43e",
+                "url": "https://api.github.com/repos/bjyoungblood/BjyProfiler/zipball/420b392f6fafff7eefca5e9615c347706ce8d8e7",
+                "reference": "420b392f6fafff7eefca5e9615c347706ce8d8e7",
                 "shasum": ""
             },
             "require": {
@@ -117,7 +117,7 @@
                 "zdt",
                 "zf2"
             ],
-            "time": "2013-07-25 02:55:43"
+            "time": "2014-03-11 13:42:24"
         },
         {
             "name": "zendframework/zend-developer-tools",
@@ -125,12 +125,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/ZendDeveloperTools.git",
-                "reference": "b577e10f92cb449cf70cfa1b6d069ee8acbe7b21"
+                "reference": "763cecf9d68fc0d3765d45847047817a47ecdd4a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/ZendDeveloperTools/zipball/b577e10f92cb449cf70cfa1b6d069ee8acbe7b21",
-                "reference": "b577e10f92cb449cf70cfa1b6d069ee8acbe7b21",
+                "url": "https://api.github.com/repos/zendframework/ZendDeveloperTools/zipball/763cecf9d68fc0d3765d45847047817a47ecdd4a",
+                "reference": "763cecf9d68fc0d3765d45847047817a47ecdd4a",
                 "shasum": ""
             },
             "require": {
@@ -178,24 +178,25 @@
                 "module",
                 "zf2"
             ],
-            "time": "2014-02-20 14:58:50"
+            "time": "2014-03-23 05:38:41"
         },
         {
             "name": "zendframework/zendframework",
-            "version": "2.2.5",
+            "version": "2.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zf2.git",
-                "reference": "4a7cf6a4cf791244e14aa0ca49d1f06916b63202"
+                "reference": "5eae447d46b00a280573b94c398b2f46f45a6903"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zf2/zipball/4a7cf6a4cf791244e14aa0ca49d1f06916b63202",
-                "reference": "4a7cf6a4cf791244e14aa0ca49d1f06916b63202",
+                "url": "https://api.github.com/repos/zendframework/zf2/zipball/5eae447d46b00a280573b94c398b2f46f45a6903",
+                "reference": "5eae447d46b00a280573b94c398b2f46f45a6903",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
+                "php": ">=5.3.3",
+                "zendframework/zendxml": "~1.0-dev"
             },
             "replace": {
                 "zendframework/zend-authentication": "self.version",
@@ -293,7 +294,52 @@
                 "framework",
                 "zf2"
             ],
-            "time": "2013-10-31 15:48:16"
+            "time": "2014-03-06 17:27:03"
+        },
+        {
+            "name": "zendframework/zendxml",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/ZendXml.git",
+                "reference": "559b34f426d33a11c3db118e00ce14bb8dc64e5f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/ZendXml/zipball/559b34f426d33a11c3db118e00ce14bb8dc64e5f",
+                "reference": "559b34f426d33a11c3db118e00ce14bb8dc64e5f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "fabpot/php-cs-fixer": "*@dev",
+                "phpunit/phpunit": "~3.7"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "ZendXml": "library/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Utility library for XML usage, best practices, and security in PHP",
+            "homepage": "http://packages.zendframework.com/",
+            "keywords": [
+                "security",
+                "xml",
+                "zf2"
+            ],
+            "time": "2014-03-05 22:25:44"
         },
         {
             "name": "zf-commons/zfc-admin",
@@ -301,12 +347,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ZF-Commons/ZfcAdmin.git",
-                "reference": "7dab378720ddbb2ce7c8d505c4ef9e7701fa6a8d"
+                "reference": "081cc4b0df4855dcbbd8095a97a3f5eecd266012"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ZF-Commons/ZfcAdmin/zipball/7dab378720ddbb2ce7c8d505c4ef9e7701fa6a8d",
-                "reference": "7dab378720ddbb2ce7c8d505c4ef9e7701fa6a8d",
+                "url": "https://api.github.com/repos/ZF-Commons/ZfcAdmin/zipball/081cc4b0df4855dcbbd8095a97a3f5eecd266012",
+                "reference": "081cc4b0df4855dcbbd8095a97a3f5eecd266012",
                 "shasum": ""
             },
             "require": {
@@ -346,7 +392,7 @@
             "keywords": [
                 "zf2"
             ],
-            "time": "2013-10-16 14:50:58"
+            "time": "2014-03-16 19:53:18"
         },
         {
             "name": "zf-commons/zfc-base",
@@ -407,12 +453,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ZF-Commons/ZfcUser.git",
-                "reference": "f24572e5b60ea6995eaa04b07a9d06b6ab557e51"
+                "reference": "48c2f8da34df09387c7563fb87a183b91a8a1126"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ZF-Commons/ZfcUser/zipball/f24572e5b60ea6995eaa04b07a9d06b6ab557e51",
-                "reference": "f24572e5b60ea6995eaa04b07a9d06b6ab557e51",
+                "url": "https://api.github.com/repos/ZF-Commons/ZfcUser/zipball/48c2f8da34df09387c7563fb87a183b91a8a1126",
+                "reference": "48c2f8da34df09387c7563fb87a183b91a8a1126",
                 "shasum": ""
             },
             "require": {
@@ -448,6 +494,9 @@
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
             "authors": [
                 {
                     "name": "Kyle Spraggs",
@@ -465,7 +514,7 @@
             "keywords": [
                 "zf2"
             ],
-            "time": "2014-02-27 17:21:36"
+            "time": "2014-03-24 12:31:32"
         }
     ],
     "packages-dev": [
@@ -476,6 +525,7 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
+        "zendframework/zendframework": 0,
         "zendframework/zend-developer-tools": 20,
         "bjyoungblood/bjy-profiler": 20,
         "zf-commons/zfc-admin": 20,
