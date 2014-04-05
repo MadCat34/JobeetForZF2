@@ -35,4 +35,6 @@ return array(
     "Jobeet tutorial for ZF2" => "Tutoriel Jobeet pour ZF2",
     "Logout" => "Se déconnecter",
     "Go to website" => "Voir le site",
+    'category' => 'categorie',
+    'job' => 'emploi',
 );

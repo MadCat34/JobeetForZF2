@@ -3,7 +3,7 @@ return array(
     '' => array(
         'plural_forms' => 'nplurals=2; plural=n!=1;'
     ),
-     'job in this category - page' => array(
+    'job in this category - page' => array(
         'annonce dans cette catégorie - page',
         'annonces dans cette catégorie - page',
     ),
@@ -15,5 +15,6 @@ return array(
     "Jobeet API" => "API Jobeet",
     "Full feed" => "Flux complet",
     "About Jobeet" => "A propos de Jobeet",
-    "powered by" => "utilise"
+    "powered by" => "utilise",
+    'add' => 'ajouter'
 );

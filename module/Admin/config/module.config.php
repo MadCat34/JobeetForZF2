@@ -15,6 +15,7 @@ return array(
         'logout_redirect_route' => 'zfcadmin/login'
     ),
     'router' => array(
+        'router_class' => 'Zend\Mvc\Router\Http\TranslatorAwareTreeRouteStack',
         'routes' => array(
             'zfcadmin' => array(
                 'child_routes' => array(
@@ -81,7 +82,7 @@ return array(
                     'category' => array(
                         'type' => 'segment',
                         'options' => array(
-                            'route' => '/category[/page/:page]',
+                            'route' => '/{category}[/page/:page]',
                             'constraints' => array(
                                 'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                                 'id' => '[0-9]+',
@@ -98,7 +99,7 @@ return array(
                             'action' => array(
                                 'type' => 'segment',
                                 'options' => array(
-                                    'route' => '/category/:action[/:id]',
+                                    'route' => '/{category}/:action[/:id]',
                                     'constraints' => array(
                                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                                         'id' => '[0-9]+',
@@ -116,7 +117,7 @@ return array(
                     'job' => array(
                         'type' => 'segment',
                         'options' => array(
-                            'route' => '/job[/page/:page]',
+                            'route' => '/{job}[/page/:page]',
                             'constraints' => array(
                                 'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                                 'page' => '[0-9]+'
@@ -132,7 +133,7 @@ return array(
                             'action' => array(
                                 'type' => 'segment',
                                 'options' => array(
-                                    'route' => '/job/:action[/:id]',
+                                    'route' => '/{job}/:action[/:id]',
                                     'constraints' => array(
                                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                                         'id' => '[0-9]+'

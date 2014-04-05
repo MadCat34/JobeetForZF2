@@ -88,7 +88,7 @@ return array(
                     'add_category' => array(
                         'type' => 'Segment',
                         'options' => array(
-                            'route' => 'add/category[/]',
+                            'route' => '{add}/{category}[/]',
                             'defaults' => array(
                                 'module' => 'Front',
                                 'controller' => 'Front\Controller\Category',
@@ -99,7 +99,7 @@ return array(
                     'add_job' => array(
                         'type' => 'Segment',
                         'options' => array(
-                            'route' => 'add/job[/]',
+                            'route' => '{add}/{job}[/]',
                             'defaults' => array(
                                 'module' => 'Front',
                                 'controller' => 'Front\Controller\Job',
@@ -110,7 +110,7 @@ return array(
                     'list_category_page' => array(
                         'type' => 'Segment',
                         'options' => array(
-                            'route' => 'category/:slug[/page/[:page]]',
+                            'route' => '{category}/:slug[/page/[:page]]',
                             'constraints' => array(
                                 'page' => '[0-9]+',
                                 'slug' => '[a-z]+'
@@ -126,7 +126,7 @@ return array(
                     'get_job' => array(
                         'type' => 'Segment',
                         'options' => array(
-                            'route' => 'job/:company/:location/:id/:position',
+                            'route' => '{job}/:company/:location/:id/:position',
                             'constraints' => array(
                                 'company' => '[a-z0-9-]*',
                                 'position' => '[a-z0-9-]*',

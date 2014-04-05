@@ -29,7 +29,14 @@ class Module extends AbstractModule implements ConfigProviderInterface
             }
         });
 
+        $eventManager->attach('route', array($this, 'onPreRoute'), 100);
         $moduleRouteListener->attach($eventManager);
+    }
+
+    public function onPreRoute($e){
+        $app      = $e->getTarget();
+        $serviceManager       = $app->getServiceManager();
+        $serviceManager->get('router')->setTranslator($serviceManager->get('translator'));
     }
 
     public function getControllerConfig()
